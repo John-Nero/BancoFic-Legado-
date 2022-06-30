@@ -1,22 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Banco
 {
-    class DadosBancarios
+    class Conta
     {
         private int Numero;
         private string Titular;
-        private double Saldo;
-        
-       
+        protected double Saldo;
 
-        public DadosBancarios(int numero, string titular)
+        public Conta() { }
+
+        public Conta(int numero, string titular)
         {
             Numero = numero;
             Titular = titular;
-
         }
 
-        
+
 
         public int getNumero()
         {
@@ -43,14 +47,12 @@ namespace Banco
 
         public void Deposito(double valor)
         {
-             Saldo += valor;
+            Saldo += valor;
         }
 
-        public void Saque(double valor)
+        public virtual void Saque(double valor)
         {
-            Saldo -= valor + 5;
+            Saldo -= valor;
         }
     }
-
-
 }
