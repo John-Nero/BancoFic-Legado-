@@ -52,7 +52,14 @@ namespace Banco
 
         public virtual void Saque(double valor)
         {
-            Saldo -= valor;
+            if(Saldo >= valor && valor > 0)
+            {
+                Saldo -= valor;
+            }
+            else
+            {
+                Console.WriteLine("SALDO INDISPONIVEL PARA OPERAÇÂO");
+            }
         }
     }
 }

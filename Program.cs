@@ -8,51 +8,73 @@ namespace Banco
 
         static void Main(string[] args)
         {
+            try
+            {
+                dadosIniciais();
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("DIGITE APENAS NUMEROS.");
+                Console.ReadLine();
+                Console.Clear();
+                dadosIniciais();
+            }
 
+            bool loop = true;
+            while (loop)
+            {
+                try
+                {
+                    Console.WriteLine("selecione que tipo de conta você deseja:");
+                    Console.WriteLine("1 - Conta Poupança \n2 - Conta Corrente \n3 - Encerrar");
+                    Console.Write(" Opção: ");
+                    int op = int.Parse(Console.ReadLine());
+
+                    switch (op)
+                    {
+                        case 1:
+                        Console.WriteLine("CONTA POUPANÇA SELECIONADA");
+                        acaoPadrao();
+
+                        break;
+
+                        case 2:
+                        Console.WriteLine("CONTA CORRENNTE SELECIONADA");
+                        acaoCorrente();
+                        ;
+                        break;
+
+                        case 3:
+                        Console.WriteLine("Agradecemos a preferência.");
+                        Environment.Exit(0);
+                        loop = false;
+                        break;
+
+                        default:
+                        Console.WriteLine(" OPÇÃO INVALIDA.");
+                        Console.WriteLine(" Tecle Enter para continuar.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("DIGITE APENAS NUMEROS.");
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+            }
+        }
+        static void dadosIniciais()
+        {
             Console.Write(" Entre com o numero da conta: ");
             int numero = int.Parse(Console.ReadLine());
             Console.Write(" Entre com o titular da conta: ");
             string titular = Console.ReadLine();
             Conta conta = new(numero, titular);
-
-
-            bool loop = true;
-            while (loop)
-            {
-                Console.WriteLine("selecione que tipo de conta você deseja:");
-                Console.WriteLine("1 - Conta Poupança \n2 - Conta Corrente \n3 - Encerrar");
-                Console.Write(" Opção: ");
-                int op = int.Parse(Console.ReadLine());
-
-                switch (op)
-                {
-                    case 1:
-                    Console.WriteLine("CONTA POUPANÇA SELECIONADA");
-                    acaoPadrao();
-
-                    break;
-
-                    case 2:
-                    Console.WriteLine("CONTA CORRENNTE SELECIONADA");
-                    acaoCorrente();
-                    ;
-                    break;
-
-                    case 3:
-                    Console.WriteLine("Agradecemos a preferência.");
-                    Environment.Exit(0);
-                    loop = false;
-                    break;
-
-                    default:
-                    Console.WriteLine(" OPÇÃO INVALIDA.");
-                    Console.WriteLine(" Tecle Enter para continuar.");
-                    Console.ReadLine();
-                    Console.Clear();
-                    break;
-                }
-            }
         }
+
         static void acaoPadrao()
         {
             Conta dados = new Conta();
@@ -74,55 +96,68 @@ namespace Banco
 
             while (loop)
             {
-                Console.WriteLine(" Digite a operação que deseja fazer\n");
-                Console.WriteLine(" 1 - Deposito \n 2 - Saque \n 3 - Ver saldo \n 4 - Encerrar");
-                Console.Write("\n Opção: ");
-                int op = int.Parse(Console.ReadLine());
-
-                switch (op)
+                try
                 {
-                    case 1:
-                    Console.WriteLine("\n Entre um valor para Deposito: ");
-                    Console.Write(" ");
-                    dados.Deposito(double.Parse(Console.ReadLine()));
-                    Console.WriteLine(" Saldo atualizado: ");
-                    Console.WriteLine($" Saldo: $ {dados.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
-                    Console.WriteLine(" Tecle Enter para continuar.");
-                    Console.ReadLine();
-                    Console.Clear();
-                    break;
+                    Console.WriteLine(" Digite a operação que deseja fazer\n");
+                    Console.WriteLine(" 1 - Deposito \n 2 - Saque \n 3 - Ver saldo \n 4 - Encerrar");
+                    Console.Write("\n Opção: ");
+                    int op = int.Parse(Console.ReadLine());
 
-                    case 2:
-                    Console.WriteLine("\n Entre um valor para saque: ");
-                    Console.Write(" ");
-                    dados.Saque(double.Parse(Console.ReadLine()));
-                    Console.WriteLine(" Saldo atualizado: ");
-                    Console.WriteLine($" Saldo: $ {dados.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
-                    Console.WriteLine(" Tecle Enter para continuar.");
-                    Console.ReadLine();
-                    Console.Clear();
-                    break;
+                    switch (op)
+                    {
+                        case 1:
+                        Console.WriteLine("\n Entre um valor para Deposito: ");
+                        Console.Write(" ");
+                        dados.Deposito(double.Parse(Console.ReadLine()));
+                        Console.WriteLine(" Saldo atualizado: ");
+                        Console.WriteLine($" Saldo: $ {dados.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
+                        Console.WriteLine(" Tecle Enter para continuar.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
 
-                    case 3:
-                    Console.WriteLine(" Saldo atualizado: ");
-                    Console.WriteLine($" Saldo: $ {dados.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
-                    Console.WriteLine(" Tecle Enter para continuar.");
-                    Console.ReadLine();
-                    Console.Clear();
-                    break;
+                        case 2:
+                        Console.WriteLine("\n Entre um valor para saque: ");
+                        Console.Write(" ");
+                        double saque = double.Parse(Console.ReadLine());
 
-                    case 4:
-                    Console.WriteLine(" Obrigado pela preferencia.");
-                    Environment.Exit(op);
-                    break;
+                        dados.Saque(saque);
+                        
 
-                    default:
-                    Console.WriteLine(" OPÇÃO INVALIDA.");
-                    Console.WriteLine(" Tecle Enter para continuar.");
-                    Console.ReadLine();
-                    Console.Clear();
-                    break;
+                        Console.WriteLine(" Saldo atualizado: ");
+                        Console.WriteLine($" Saldo: $ {dados.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
+                        Console.WriteLine(" Tecle Enter para continuar.");
+                        
+                        
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
 
+                        case 3:
+                        Console.WriteLine(" Saldo atualizado: ");
+                        Console.WriteLine($" Saldo: $ {dados.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
+                        Console.WriteLine(" Tecle Enter para continuar.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+
+                        case 4:
+                        Console.WriteLine(" Obrigado pela preferencia.");
+                        Environment.Exit(op);
+                        break;
+
+                        default:
+                        Console.WriteLine(" OPÇÃO INVALIDA.");
+                        Console.WriteLine(" Tecle Enter para continuar.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    }
+
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("DIGITE APENAS NUMEROS");
                 }
             }
         }
@@ -148,65 +183,73 @@ namespace Banco
             bool loop = true;
             while (loop)
             {
-                Console.WriteLine(" Digite a operação que deseja fazer\n");
-                Console.WriteLine(" 1 - Deposito \n 2 - Saque \n 3 - Ver saldo \n 4 - emprestimo \n 5 - Encerrar");
-                Console.Write("\n Opção: ");
-                int op = int.Parse(Console.ReadLine());
-
-                switch (op)
+                try
                 {
+                    Console.WriteLine(" Digite a operação que deseja fazer\n");
+                    Console.WriteLine(" 1 - Deposito \n 2 - Saque \n 3 - Ver saldo \n 4 - emprestimo \n 5 - Encerrar");
+                    Console.Write("\n Opção: ");
+                    int op = int.Parse(Console.ReadLine());
 
-                    case 1:
-                    Console.WriteLine("\n Entre um valor para deposito: ");
-                    Console.Write(" ");
-                    corrente.Deposito(double.Parse(Console.ReadLine()));
-                    Console.WriteLine(" Saldo atualizado: ");
-                    Console.WriteLine($" Saldo: $ {corrente.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
-                    Console.WriteLine(" Tecle Enter para continuar.");
-                    Console.ReadLine();
-                    Console.Clear();
-                    break;
+                    switch (op)
+                    {
 
-                    case 2:
-                    Console.WriteLine("\n Entre um valor para saque: ");
-                    Console.Write(" ");
-                    corrente.Saque(double.Parse(Console.ReadLine()));
-                    Console.WriteLine(" Saldo atualizado: ");
-                    Console.WriteLine($" Saldo: $ {corrente.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
-                    Console.WriteLine(" Tecle Enter para continuar.");
-                    Console.ReadLine();
-                    Console.Clear();
-                    break;
+                        case 1:
+                        Console.WriteLine("\n Entre um valor para deposito: ");
+                        Console.Write(" ");
+                        corrente.Deposito(double.Parse(Console.ReadLine()));
+                        Console.WriteLine(" Saldo atualizado: ");
+                        Console.WriteLine($" Saldo: $ {corrente.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
+                        Console.WriteLine(" Tecle Enter para continuar.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
 
-                    case 3:
-                    Console.WriteLine(" Saldo atualizado: ");
-                    Console.WriteLine($" Saldo: $ {corrente.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
-                    Console.WriteLine(" Tecle Enter para continuar.");
-                    Console.ReadLine();
-                    Console.Clear();
-                    break;
+                        case 2:
+                        Console.WriteLine("\n Entre um valor para saque: ");
+                        Console.Write(" ");
+                        corrente.Saque(double.Parse(Console.ReadLine()));
+                        Console.WriteLine(" Saldo atualizado: ");
+                        Console.WriteLine($" Saldo: $ {corrente.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
+                        Console.WriteLine(" Tecle Enter para continuar.");
+                        
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
 
-                    case 4:
-                    Console.WriteLine("\n Entre o valor do empréstimo: ");
-                    Console.Write(" ");
-                    corrente.Emprestimo(double.Parse(Console.ReadLine()));
-                    Console.WriteLine(" Tecle Enter para continuar.");
-                    Console.ReadLine();
-                    Console.Clear();
-                    break;
+                        case 3:
+                        Console.WriteLine(" Saldo atualizado: ");
+                        Console.WriteLine($" Saldo: $ {corrente.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
+                        Console.WriteLine(" Tecle Enter para continuar.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
 
-                    case 5:
-                    Console.WriteLine(" Obrigado pela preferencia.");
-                    Environment.Exit(op);
-                    break;
+                        case 4:
+                        Console.WriteLine("\n Entre o valor do empréstimo: ");
+                        Console.Write(" ");
+                        corrente.Emprestimo(double.Parse(Console.ReadLine()));
+                        Console.WriteLine(" Tecle Enter para continuar.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
 
-                    default:
-                    Console.WriteLine(" OPÇÃO INVALIDA.");
-                    Console.WriteLine(" Tecle Enter para continuar.");
-                    Console.ReadLine();
-                    Console.Clear();
-                    break;
+                        case 5:
+                        Console.WriteLine(" Obrigado pela preferencia.");
+                        Environment.Exit(op);
+                        break;
 
+                        default:
+                        Console.WriteLine(" OPÇÃO INVALIDA.");
+                        Console.WriteLine(" Tecle Enter para continuar.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("DIGITE APENAS NUMEROS");
                 }
             }
 

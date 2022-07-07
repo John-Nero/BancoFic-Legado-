@@ -28,7 +28,14 @@ namespace Banco
         }
         public override void Saque(double valor)
         {
-            Saldo -= valor + 5;
+            if (Saldo >= valor + 5 && valor > 0)
+            {
+                Saldo -= valor + 5;
+            }else
+            {
+                Console.WriteLine("SALDO INDISPONIVEL PARA OPERAÇÂO");
+            }
+        
         }
     }
 }
