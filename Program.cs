@@ -10,14 +10,36 @@ namespace Banco
         {
             try
             {
-                dadosIniciais();
+                Console.Write(" Entre com o numero da conta: ");
+                int numero = int.Parse(Console.ReadLine());
+
+                int confirmacaoNumero = numero.ToString().Length;
+                if (confirmacaoNumero < 4 || confirmacaoNumero >= 5)
+                {
+                    Console.WriteLine(" O NUMERO DE CONTA DEVE CONTER QUATRO DIGITOS");
+                    Console.ReadLine();
+                    Console.Clear();
+                    Main(args);
+                }
+                Console.Write(" Entre com o titular da conta: ");
+                string titular = Console.ReadLine();
+                int confirmacaoTitular = titular.Length;
+                if (confirmacaoTitular < 3 || confirmacaoTitular >= 5)
+                {
+                    Console.WriteLine(" NOME MUITO CURTO OU MUITO LONGO, DIGITE ENTRE QUATRO E DEZ CARACTERES");
+                    Console.ReadLine();
+                    Console.Clear();
+                    Main(args);
+                }
+
+                Conta conta = new(numero, titular);
             }
             catch (FormatException)
             {
-                Console.WriteLine("DIGITE APENAS NUMEROS.");
+                Console.WriteLine("DIGITE APENAS NUMEROS");
                 Console.ReadLine();
                 Console.Clear();
-                dadosIniciais();
+                Main(args);            
             }
 
             bool loop = true;
@@ -25,6 +47,7 @@ namespace Banco
             {
                 try
                 {
+                    Console.WriteLine();
                     Console.WriteLine("selecione que tipo de conta você deseja:");
                     Console.WriteLine("1 - Conta Poupança \n2 - Conta Corrente \n3 - Encerrar");
                     Console.Write(" Opção: ");
@@ -65,14 +88,6 @@ namespace Banco
                     Console.Clear();
                 }
             }
-        }
-        static void dadosIniciais()
-        {
-            Console.Write(" Entre com o numero da conta: ");
-            int numero = int.Parse(Console.ReadLine());
-            Console.Write(" Entre com o titular da conta: ");
-            string titular = Console.ReadLine();
-            Conta conta = new(numero, titular);
         }
 
         static void acaoPadrao()
@@ -122,13 +137,13 @@ namespace Banco
                         double saque = double.Parse(Console.ReadLine());
 
                         dados.Saque(saque);
-                        
+
 
                         Console.WriteLine(" Saldo atualizado: ");
                         Console.WriteLine($" Saldo: $ {dados.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
                         Console.WriteLine(" Tecle Enter para continuar.");
-                        
-                        
+
+
                         Console.ReadLine();
                         Console.Clear();
                         break;
@@ -211,7 +226,7 @@ namespace Banco
                         Console.WriteLine(" Saldo atualizado: ");
                         Console.WriteLine($" Saldo: $ {corrente.getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
                         Console.WriteLine(" Tecle Enter para continuar.");
-                        
+
                         Console.ReadLine();
                         Console.Clear();
                         break;
