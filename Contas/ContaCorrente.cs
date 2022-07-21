@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+
 namespace Banco
 {
     class ContaCorrente : Conta
@@ -7,9 +8,7 @@ namespace Banco
         private double LimiteEmprestimo = 500;
         
         public ContaCorrente() { }
-
         public ContaCorrente(int numero, string titular) : base(numero, titular) { }
-
         public ContaCorrente(double limiteEmprestimo)
         {
             LimiteEmprestimo = limiteEmprestimo;
