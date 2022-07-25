@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 
 namespace Banco
 {
-    class Opcoes
+    class OpcoesDeConta
     {
-
         ContaCorrente corrente = new ContaCorrente();
         ContaPoupanca poupanca = new ContaPoupanca();
-
-        //Opções e coleta de dados da conta poupança
-
-        public Conta CriarContaPoupanca()
+        SalvarELer salvar = new SalvarELer();
+        
+        // coleta de dados e Opções da conta poupança
+        public ContaPoupanca CriarContaPoupanca()
         {
             try
             {
@@ -42,7 +42,7 @@ namespace Banco
                 }
                 poupanca.setNumero(numero);
                 poupanca.setTitular(titular);
-
+                salvar.RegistrarClientePoupanca(numero, titular, poupanca.getSaldo());
                 return poupanca;
             }
             catch (FormatException)
@@ -54,21 +54,14 @@ namespace Banco
                 throw;
             }
         }
-
-        public void inicialPS()
-        {
-            Console.Write(" Entre com o valor de depósito inicial: ");
-            poupanca.Deposito(double.Parse(Console.ReadLine()));
-            Console.WriteLine("\n Dados da conta:");
-            Console.WriteLine($" Numero da conta: {poupanca.getNumero()}, Titular da conta: {poupanca.getTitular()}, Saldo atual:{poupanca.getSaldo()}");
-        }
-
         public void DepositoPoupanca()
         {
             Console.WriteLine("\n Entre um quantidade para Deposito: ");
             Console.Write(" ");
             poupanca.Deposito(double.Parse(Console.ReadLine()));
+            salvar.DeletarEAtualizarClientePoupanca(poupanca.getNumero(), poupanca.getTitular(), poupanca.getSaldo());
             MostrarDadosPoupanca();
+
         }
         public void SaquePoupanca()
         {
@@ -76,6 +69,7 @@ namespace Banco
             Console.Write(" ");
             double saque = double.Parse(Console.ReadLine());
             poupanca.Saque(saque);
+            salvar.DeletarEAtualizarClientePoupanca(poupanca.getNumero(), poupanca.getTitular(), poupanca.getSaldo());
             MostrarDadosPoupanca();
         }
         public void MostrarDadosPoupanca()
@@ -91,12 +85,14 @@ namespace Banco
         {
             Console.WriteLine("Saldo após renda");
             poupanca.Rentabiliade();
+            salvar.DeletarEAtualizarClientePoupanca(poupanca.getNumero(), poupanca.getTitular(), poupanca.getSaldo());
             Console.WriteLine(poupanca.getSaldo());
+            Console.ReadLine();
         }
 
+        
 
-        //opções e coleta de dados da conta corrente
-
+        // coleta de dados e Opções da conta corrente
         public Conta CriarContaCorrente()
         {
             try
@@ -118,7 +114,7 @@ namespace Banco
 
 
                 int confirmacaoTitular = titular.Length;
-                if (confirmacaoTitular < 3 || confirmacaoTitular >= 5)
+                if (confirmacaoTitular < 3 || confirmacaoTitular >= 10)
                 {
                     Console.WriteLine(" NOME MUITO CURTO OU MUITO LONGO, DIGITE ENTRE QUATRO E DEZ CARACTERES");
                     Console.ReadLine();
@@ -128,7 +124,7 @@ namespace Banco
                 }
                 corrente.setNumero(numero);
                 corrente.setTitular(titular);
-
+                salvar.RegistrarClienteCorrente(numero, titular, corrente.getSaldo());
                 return corrente;
             }
             catch (FormatException)
@@ -141,21 +137,12 @@ namespace Banco
             }
 
         }
-
-        public void inicialCS()
-        {
-            Console.Write(" Entre com o valor de depósito inicial: ");
-            corrente.Deposito(double.Parse(Console.ReadLine()));
-            Console.WriteLine("\n Dados da conta:");
-            Console.WriteLine($" Nº da Conta: {corrente.getNumero()}, Titular: {corrente.getTitular()}, Saldo: {corrente.getSaldo().ToString("F2", CultureInfo.InvariantCulture)}\n");
-
-        }
-
         public void DepositoCorrente()
         {
             Console.WriteLine("\n Entre um valor para deposito: ");
             Console.Write(" ");
             corrente.Deposito(double.Parse(Console.ReadLine()));
+            salvar.DeletarEAtualizarClienteCorrente(corrente.getNumero(), corrente.getTitular(), corrente.getSaldo());
             MostrarDadosCorrente();
         }
         public void SaqueCorrente()
@@ -163,6 +150,7 @@ namespace Banco
             Console.WriteLine("\n Entre um valor para saque: ");
             Console.Write(" ");
             corrente.Saque(double.Parse(Console.ReadLine()));
+            salvar.DeletarEAtualizarClienteCorrente(corrente.getNumero(), corrente.getTitular(), corrente.getSaldo());
             MostrarDadosCorrente();
 
 
@@ -180,6 +168,7 @@ namespace Banco
             Console.WriteLine("\n Entre o valor do empréstimo: ");
             Console.Write(" ");
             corrente.Emprestimo(double.Parse(Console.ReadLine()));
+            salvar.DeletarEAtualizarClienteCorrente(corrente.getNumero(), corrente.getTitular(), corrente.getSaldo());
             Console.WriteLine(" Tecle Enter para continuar.");
             Console.ReadLine();
             Console.Clear();

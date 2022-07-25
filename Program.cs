@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Globalization;
 
 namespace Banco
@@ -8,7 +9,7 @@ namespace Banco
 
         static void Main(string[] args)
         {
-            Opcoes opcoes = new Opcoes();
+            OpcoesDeConta opcoes = new OpcoesDeConta();
 
             Console.WriteLine("Selecione a ação que deseja executar:");
             Console.WriteLine(" 1 - consultar conta Poupança \n 2 - consultar conta corrente \n 3 - encerrar");
@@ -46,14 +47,14 @@ namespace Banco
             }
         }
 
-        static void acaoPoupanca(Opcoes opcoes)
+        static void acaoPoupanca(OpcoesDeConta opcoes)
         {
 
             Console.Write(" Haverá depósito inicial: (s/n)? ");
             char res = char.Parse(Console.ReadLine().ToLower());
             if (res.Equals('s'))
             {
-                opcoes.inicialPS();
+                opcoes.DepositoPoupanca();
             }
             else if (res.Equals('n'))
             {
@@ -115,14 +116,14 @@ namespace Banco
             }
         }
 
-        static void acaoCorrente(Opcoes opcoes)
+        static void acaoCorrente(OpcoesDeConta opcoes)
         {
-            
+
             Console.Write(" Haverá depósito inicial: (s/n)? ");
             char res = char.Parse(Console.ReadLine().ToLower());
             if (res.Equals('s'))
             {
-                opcoes.inicialCS();
+                opcoes.DepositoCorrente();
             }
             else if (res.Equals('n'))
             {

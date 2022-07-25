@@ -2,7 +2,7 @@
 
 namespace Banco
 {
-    class ContaPoupanca : Conta
+   sealed class ContaPoupanca : Conta
     {
         private double taxaDeRentabilidade = 0.05;
 
