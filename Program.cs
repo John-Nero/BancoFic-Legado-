@@ -1,6 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Globalization;
+﻿//ATENÇÃO PARA VISUALIZAÇÃO DO DIAGRAMA UTILIZAR O SITE:
+//https://app.diagrams.net/
+
+using System;
 
 namespace Banco
 {
@@ -9,10 +10,11 @@ namespace Banco
 
         static void Main(string[] args)
         {
-            OpcoesDeConta opcoes = new OpcoesDeConta();
 
+            OpcoesDeConta opcoes = new OpcoesDeConta();
+            SalvarELer salvar = new SalvarELer();
             Console.WriteLine("Selecione a ação que deseja executar:");
-            Console.WriteLine(" 1 - consultar conta Poupança \n 2 - consultar conta corrente \n 3 - encerrar");
+            Console.WriteLine(" 1 - Consultar conta poupança(Já existente) \n 2 -Criar conta poupanca \n 3 - Consultar conta corrente (já existente) \n 4 - Criar conta corrente \n 5 - Encerrar");
             int sel = int.Parse(Console.ReadLine());
             bool loop = true;
             while (loop)
@@ -20,18 +22,28 @@ namespace Banco
                 switch (sel)
                 {
                     case 1:
-                    Console.WriteLine("CONTA POUPANÇA SELECIONADA");
-                    Conta contap = opcoes.CriarContaPoupanca();
-                    acaoPoupanca(opcoes);
+                    Console.WriteLine("CONSULTAR CONTA POUPANÇA SELECIONADA");
+                    opcoes.ConsultarContaPoupanca();
                     break;
 
                     case 2:
-                    Console.WriteLine("CONTA CORRENTE SELECIONADA");
-                    Conta contac = opcoes.CriarContaCorrente();
-                    acaoCorrente(opcoes);
+                    Console.WriteLine("CRIAR CONTA POUPANCA SELECIONADA");
+                    opcoes.CriarContaPoupanca();
+                    acaoPoupanca(opcoes);
                     break;
 
                     case 3:
+                    Console.WriteLine("CONSULTAR CONTA CORRENTE SELECIONADA");
+                    opcoes.ConsultarContaCorrente();
+                    break;
+
+                    case 4:
+                    Console.WriteLine("CRIAR CONTA POUPANCA SELECIONADA");
+                    opcoes.CriarContaCorrente();
+                    acaoCorrente(opcoes);
+                    break;
+
+                    case 5:
                     Console.WriteLine("Agradecemos a preferência");
                     loop = false;
                     break;
@@ -49,23 +61,6 @@ namespace Banco
 
         static void acaoPoupanca(OpcoesDeConta opcoes)
         {
-
-            Console.Write(" Haverá depósito inicial: (s/n)? ");
-            char res = char.Parse(Console.ReadLine().ToLower());
-            if (res.Equals('s'))
-            {
-                opcoes.DepositoPoupanca();
-            }
-            else if (res.Equals('n'))
-            {
-                opcoes.MostrarDadosPoupanca();
-            }
-            else
-            {
-                Console.WriteLine("OPÇÃO INVALIDA!");
-                Console.ReadLine(); acaoPoupanca(opcoes);
-            }
-
             bool loop = true;
             while (loop)
             {

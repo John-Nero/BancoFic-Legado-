@@ -1,40 +1,80 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace Banco
 {
-     class SalvarELer
+    class SalvarELer
     {
-        const string CaminhoPoupanca = @"C:\temp\BancoFic\DadosDosClientesPoupanca.txt";
-        const string CaminhoCorrente = @"C:\temp\BancoFic\DadosDosClientesCorrente.txt";
 
-        //Metodos de Save da conta poupanca
-        public void RegistrarClientePoupanca(int numero, string titular, double saldo)
+        const string CaminhoPoupanca = @"C:\temp\BancoFic\DadosClientes\DadosDosClientesPoupanca.txt";
+        const string CaminhoCorrente = @"C:\temp\BancoFic\DadosClientes\DadosDosClientesCorrente.txt";
+        //Metodos de Save e procura da conta poupanca
+        public void RegistrarCliente_AtualizarClientePoupanca(int numero, string titular, double saldo)
         {
             using var file = File.AppendText(CaminhoPoupanca);
             file.WriteLine($"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}");
             file.Close();
         }
-        public void DeletarEAtualizarClientePoupanca(int numero, string titular, double saldo)
+        
+        public void procurarLinhapoupanca(int numero, string titular, double saldo)
         {
-            File.Delete(CaminhoPoupanca);
-            using var file = File.AppendText(CaminhoPoupanca);
-            file.WriteLine($"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}");
-            file.Close();
+            try
+            {
+                string a = $"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}";
+                string[] leOTexto = File.ReadAllLines(CaminhoPoupanca);
+
+                foreach (string s in leOTexto)
+                {
+                    if (s.Equals(a))
+                    {
+                        Console.WriteLine(s);
+                    }
+                }
+            }
+            catch (FieldAccessException e)
+            {
+                Console.WriteLine("Ops... isso não deveria ter acontecido.");
+                Console.WriteLine(e.Message);
+            }
         }
 
-        //Metodos de Save da conta corrente
+        //Metodos de Save e procura da conta corrente
         public void RegistrarClienteCorrente(int numero, string titular, double saldo)
         {
             using var file = File.AppendText(CaminhoCorrente);
             file.WriteLine($"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}");
             file.Close();
         }
-        public void DeletarEAtualizarClienteCorrente(int numero, string titular, double saldo)
+        
+        public void procurarLinhaCorrente(int numero, string titular, double saldo)
         {
-            File.Delete(CaminhoCorrente);
-            using var file = File.AppendText(CaminhoCorrente);
-            file.WriteLine($"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}");
-            file.Close();
+            try
+            {
+                string a = $"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}";
+                string[] leOTexto = File.ReadAllLines(CaminhoCorrente);
+
+                foreach (string s in leOTexto)
+                {
+                    if (s.Equals(a))
+                    {
+                        Console.WriteLine(s);
+                    }
+                }
+            }
+            catch (FieldAccessException e)
+            {
+                Console.WriteLine("Ops... isso não deveria ter acontecido.");
+                Console.WriteLine(e.Message);
+            }
         }
+
+
+
+
+
+
     }
 }
+
+
+    
