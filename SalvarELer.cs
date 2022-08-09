@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Banco
@@ -6,8 +7,39 @@ namespace Banco
     class SalvarELer
     {
 
+        //CaminhosParaLocalDeBusca
         const string CaminhoPoupanca = @"C:\temp\BancoFic\DadosClientes\DadosDosClientesPoupanca.txt";
         const string CaminhoCorrente = @"C:\temp\BancoFic\DadosClientes\DadosDosClientesCorrente.txt";
+
+        //Metodos de divição de dados
+        internal int NumeroDeConta(string ModeloParaDivisao)
+        {
+            //DADOS DA CONTA | NUMERO: 4578 | TITULAR: john | SALDO: 0
+
+            string[] ModeloInteiro = ModeloParaDivisao.Split(" | ");
+            string[] numeroSemFormat = ModeloInteiro[1].Split("NUMERO: ");
+            int numeroFormat = int.Parse(numeroSemFormat[1]);
+            return numeroFormat;
+        }
+        internal string TitularDeConta(string ModeloParaDivisao)
+        {
+            //DADOS DA CONTA | NUMERO: 4578 | TITULAR: john | SALDO: 0
+
+            string[] ModeloInteiro = ModeloParaDivisao.Split(" | ");
+            string[] titularSemFormat = ModeloInteiro[2].Split("TITULAR: ");
+            string titularFormat = titularSemFormat[1];
+            return titularFormat;
+        }
+        internal double SaldoDeConta(string ModeloParaDivisao)
+        {
+            //DADOS DA CONTA | NUMERO: 4578 | TITULAR: john | SALDO: 0
+
+            string[] ModeloInteiro = ModeloParaDivisao.Split(" | ");
+            string[] saldoSemFormat = ModeloInteiro[3].Split("SALDO: ");
+            double saldoFormat = double.Parse(saldoSemFormat[1]);
+            return saldoFormat;
+        }
+
         //Metodos de Save e procura da conta poupanca
         public void RegistrarCliente_AtualizarClientePoupanca(int numero, string titular, double saldo)
         {
@@ -15,21 +47,40 @@ namespace Banco
             file.WriteLine($"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}");
             file.Close();
         }
-        
-        public void procurarLinhapoupanca(int numero, string titular, double saldo)
+
+        public void procurarLinhapoupanca(string titular, int numero)
         {
+
             try
             {
-                string a = $"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}";
-                string[] leOTexto = File.ReadAllLines(CaminhoPoupanca);
+                List<string> ModelosDeConta = new List<string>();
+                List<ContaPoupanca> LIstaDasPoupancas = new List<ContaPoupanca>();
+                string[] LeTexto = File.ReadAllLines(CaminhoPoupanca);
 
-                foreach (string s in leOTexto)
+                
+                foreach (string s in LeTexto)
                 {
-                    if (s.Equals(a))
-                    {
-                        Console.WriteLine(s);
-                    }
+                    
+                    int numeroPararRegistro = NumeroDeConta(s);
+                    string titularPararRegistro = TitularDeConta(s);
+                    double saldoPararRegistro = SaldoDeConta(s);
+
+                    LIstaDasPoupancas.Add(new ContaPoupanca(numeroPararRegistro, titularPararRegistro, saldoPararRegistro));
+
+                    
                 }
+                
+                foreach (ContaPoupanca conta in LIstaDasPoupancas)
+                {
+                    if (conta.getNumero() == numero && conta.getTitular() == titular)
+                    {
+                        Console.WriteLine(" CONTA SELECIONADA:");
+                        Console.WriteLine($"TITULAR:{conta.getTitular()} NUMERO: {conta.getNumero()} SALDO: {conta.getSaldo().ToString("F2")}");
+                        
+                    }
+                    else { Console.WriteLine("CONTA NÃO LOCALIZADA."); }
+                }
+
             }
             catch (FieldAccessException e)
             {
@@ -45,7 +96,7 @@ namespace Banco
             file.WriteLine($"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}");
             file.Close();
         }
-        
+
         public void procurarLinhaCorrente(int numero, string titular, double saldo)
         {
             try
@@ -77,4 +128,4 @@ namespace Banco
 }
 
 
-    
+

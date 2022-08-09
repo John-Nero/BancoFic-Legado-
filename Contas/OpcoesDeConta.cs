@@ -5,7 +5,7 @@ namespace Banco
 {
     class OpcoesDeConta
     {
-        ContaCorrente corrente = new ContaCorrente();
+        
         ContaPoupanca poupanca = new ContaPoupanca();
         SalvarELer salvar = new SalvarELer();
 
@@ -74,7 +74,7 @@ namespace Banco
         }
         public void ConsultarContaPoupanca()
         {
-            Console.WriteLine("CONSULTAR CONTA POUPANÇA SELECIONADA");
+            
             Console.WriteLine("Digite os dados a seguir para consultar se sua conta já consta no sistema");
 
             Console.Write("Nome do Titular:");
@@ -84,12 +84,9 @@ namespace Banco
 
             Console.Write("Numero da conta:");
             int numero = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("");
-
-            Console.WriteLine("Saldo:");
-            double saldo = double.Parse(Console.ReadLine());
-            salvar.procurarLinhapoupanca(numero, titular, saldo);
+                        
+            salvar.procurarLinhapoupanca(titular, numero);
+             
         }
         public void DepositoPoupanca()
         {
@@ -127,6 +124,7 @@ namespace Banco
         }
 
         // Coleta de dados e Opções da conta corrente
+        ContaCorrente corrente = new ContaCorrente();
         public Conta CriarContaCorrente()
         {
             try
