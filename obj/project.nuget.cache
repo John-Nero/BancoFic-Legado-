@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "woN6Q3ZWWCNd4G7Mzk2jSlgkRwN7O1Vpi4Y8wXYnrBv/NW7Fka3qMGT1oKJ2Dm2oUNQCPDOE5Y6sNU7vkw5QHA==",
+  "dgSpecHash": "9BtXQ9EOv8c5taoc3S36eKbEr+9KawrtPX2IYfGGVO0LKbWj/nHJNxoo0X1kr2fmbcg3SgtYCxxrR1zuQUOOxw==",
   "success": true,
-  "projectFilePath": "C:\\temp\\BancoFic\\Banco.csproj",
+  "projectFilePath": "C:\\temp\\projeto\\Banco.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -9,7 +9,7 @@ namespace Banco
         protected double Saldo;
 
         public Conta() { }
-        public Conta(int numero, string titular)
+        public Conta(string titular, int numero)
         {
             Numero = numero;
             Titular = titular;

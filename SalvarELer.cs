@@ -1,114 +1,153 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-
+using System.Collections.Generic;
 namespace Banco
 {
+
     class SalvarELer
     {
-
-        //CaminhosParaLocalDeBusca
-        const string CaminhoPoupanca = @"C:\temp\BancoFic\DadosClientes\DadosDosClientesPoupanca.txt";
-        const string CaminhoCorrente = @"C:\temp\BancoFic\DadosClientes\DadosDosClientesCorrente.txt";
-
-        //Metodos de divição de dados
-        internal int NumeroDeConta(string ModeloParaDivisao)
-        {
-            //DADOS DA CONTA | NUMERO: 4578 | TITULAR: john | SALDO: 0
-
-            string[] ModeloInteiro = ModeloParaDivisao.Split(" | ");
-            string[] numeroSemFormat = ModeloInteiro[1].Split("NUMERO: ");
-            int numeroFormat = int.Parse(numeroSemFormat[1]);
-            return numeroFormat;
-        }
-        internal string TitularDeConta(string ModeloParaDivisao)
-        {
-            //DADOS DA CONTA | NUMERO: 4578 | TITULAR: john | SALDO: 0
-
-            string[] ModeloInteiro = ModeloParaDivisao.Split(" | ");
-            string[] titularSemFormat = ModeloInteiro[2].Split("TITULAR: ");
-            string titularFormat = titularSemFormat[1];
-            return titularFormat;
-        }
-        internal double SaldoDeConta(string ModeloParaDivisao)
-        {
-            //DADOS DA CONTA | NUMERO: 4578 | TITULAR: john | SALDO: 0
-
-            string[] ModeloInteiro = ModeloParaDivisao.Split(" | ");
-            string[] saldoSemFormat = ModeloInteiro[3].Split("SALDO: ");
-            double saldoFormat = double.Parse(saldoSemFormat[1]);
-            return saldoFormat;
-        }
+        ContaPoupanca a = new ContaPoupanca();
+        //Caminhos Para Local De Busca
+        const string CaminhoPoupanca = @"C:\temp\projeto\DadosClientes\DadosDosClientesPoupanca.txt";
+        const string CaminhoCorrente = @"C:\temp\projeto\DadosClientes\DadosDosClientesCorrente.txt";
 
         //Metodos de Save e procura da conta poupanca
-        public void RegistrarCliente_AtualizarClientePoupanca(int numero, string titular, double saldo)
-        {
-            using var file = File.AppendText(CaminhoPoupanca);
-            file.WriteLine($"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}");
-            file.Close();
-        }
+        public List<ContaPoupanca> LIstaDasPoupancas = new List<ContaPoupanca>();
 
-        public void procurarLinhapoupanca(string titular, int numero)
+        internal List<ContaPoupanca> salvarEmListaPoupanca()
         {
-
+            //john | 4578 | 0
             try
             {
-                List<string> ModelosDeConta = new List<string>();
-                List<ContaPoupanca> LIstaDasPoupancas = new List<ContaPoupanca>();
                 string[] LeTexto = File.ReadAllLines(CaminhoPoupanca);
-
-                
                 foreach (string s in LeTexto)
                 {
-                    
-                    int numeroPararRegistro = NumeroDeConta(s);
-                    string titularPararRegistro = TitularDeConta(s);
-                    double saldoPararRegistro = SaldoDeConta(s);
+                    string[] ModeloInteiro = s.Split(" | ");
 
-                    LIstaDasPoupancas.Add(new ContaPoupanca(numeroPararRegistro, titularPararRegistro, saldoPararRegistro));
+                    string titular = ModeloInteiro[0];
+                    int numero = int.Parse(ModeloInteiro[1]);
+                    double saldo = double.Parse(ModeloInteiro[2]);
+                    ContaPoupanca contacompleta = new ContaPoupanca(titular, numero, saldo);
 
+                    LIstaDasPoupancas.Add(contacompleta);
                     
                 }
-                
+                return LIstaDasPoupancas;
+            }
+            catch (Exception e) { Console.WriteLine(e); throw;}
+        }
+        public void AtualizarClientePoupanca(string titular, int numero, double saldo)
+        {
+            foreach (ContaPoupanca conta in LIstaDasPoupancas)
+            {
+                if (titular == conta.getTitular() && numero == conta.getNumero())
+                {
+                    File.Delete(CaminhoPoupanca);
+                    LIstaDasPoupancas.Remove(conta);
+                    break;
+                }
+            }
+            using var file = File.AppendText(CaminhoPoupanca);
+            LIstaDasPoupancas.Add(new ContaPoupanca(titular, numero, saldo));
+            file.Close();
+            RegistrarClientePoupanca();
+        }
+        public void RegistrarClientePoupanca()
+        {
+            using var file = File.AppendText(CaminhoPoupanca);
+            foreach (ContaPoupanca conta in LIstaDasPoupancas)
+            {
+                string titular = conta.getTitular();
+                int numero = conta.getNumero();
+                double saldo = conta.getSaldo();
+                file.WriteLine($"{titular} | {numero} | {saldo}");
+            }
+            file.Close();
+        }
+        public void ProcurarLinhaPoupanca(string titular, int numero)
+        {
+            try
+            {
+                salvarEmListaPoupanca();
                 foreach (ContaPoupanca conta in LIstaDasPoupancas)
                 {
                     if (conta.getNumero() == numero && conta.getTitular() == titular)
                     {
                         Console.WriteLine(" CONTA SELECIONADA:");
-                        Console.WriteLine($"TITULAR:{conta.getTitular()} NUMERO: {conta.getNumero()} SALDO: {conta.getSaldo().ToString("F2")}");
-                        
+                        Console.WriteLine($"\n TITULAR:{conta.getTitular()} NUMERO: {conta.getNumero()} SALDO: {conta.getSaldo().ToString("F2")}\n");
                     }
-                    else { Console.WriteLine("CONTA NÃO LOCALIZADA."); }
                 }
-
             }
             catch (FieldAccessException e)
             {
                 Console.WriteLine("Ops... isso não deveria ter acontecido.");
                 Console.WriteLine(e.Message);
             }
+            Console.WriteLine("DADOS INCORRETOS OU CONTA NÂO CONSTA NO SISTEMA");
         }
 
-        //Metodos de Save e procura da conta corrente
-        public void RegistrarClienteCorrente(int numero, string titular, double saldo)
+        //Metodos de save e procura da conta corrente
+        List<ContaCorrente> LIstaDasCorrentes = new List<ContaCorrente>();
+
+        internal void salvarEmListaCorrente()
+        {
+            //john | 4578 | 0
+            try
+            {
+                string[] LeTexto = File.ReadAllLines(CaminhoCorrente);
+                foreach (string s in LeTexto)
+                {
+                    string[] ModeloInteiro = s.Split(" | ");
+
+                    string titular = ModeloInteiro[0];
+                    int numero = int.Parse(ModeloInteiro[1]);
+                    double saldo = double.Parse(ModeloInteiro[2]);
+                    ContaCorrente contacompleta = new ContaCorrente(titular, numero, saldo);
+
+                    LIstaDasCorrentes.Add(contacompleta);
+                }
+
+            }
+            catch (Exception e) { Console.WriteLine(e); }
+        }
+        public void AtualizarClienteCorrente(string titular, int numero, double saldo)
+        {
+            foreach (ContaCorrente conta in LIstaDasCorrentes)
+            {
+                if (titular == conta.getTitular() && numero == conta.getNumero())
+                {
+                    File.Delete(CaminhoCorrente);
+                    LIstaDasCorrentes.Remove(conta);
+                    break;
+                }
+            }
+            using var file = File.AppendText(CaminhoCorrente);
+            LIstaDasCorrentes.Add(new ContaCorrente(titular, numero, saldo));
+            file.Close();
+            RegistrarClienteCorrente();
+        }
+        public void RegistrarClienteCorrente()
         {
             using var file = File.AppendText(CaminhoCorrente);
-            file.WriteLine($"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}");
+            foreach (ContaCorrente conta in LIstaDasCorrentes)
+            {
+                string titular = conta.getTitular();
+                int numero = conta.getNumero();
+                double saldo = conta.getSaldo();
+                file.WriteLine($"{titular} | {numero} | {saldo}");
+            }
             file.Close();
         }
-
-        public void procurarLinhaCorrente(int numero, string titular, double saldo)
+        public void ProcurarLinhaCorrente(string titular, int numero)
         {
             try
             {
-                string a = $"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}";
-                string[] leOTexto = File.ReadAllLines(CaminhoCorrente);
-
-                foreach (string s in leOTexto)
+                foreach (ContaCorrente conta in LIstaDasCorrentes)
                 {
-                    if (s.Equals(a))
+                    if (conta.getNumero() == numero && conta.getTitular() == titular)
                     {
-                        Console.WriteLine(s);
+                        Console.WriteLine(" CONTA SELECIONADA:");
+                        Console.WriteLine($"TITULAR:{conta.getTitular()} NUMERO: {conta.getNumero()} SALDO: {conta.getSaldo().ToString("F2")}");
                     }
                 }
             }
@@ -118,14 +157,5 @@ namespace Banco
                 Console.WriteLine(e.Message);
             }
         }
-
-
-
-
-
-
     }
 }
-
-
-

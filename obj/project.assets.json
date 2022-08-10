@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\temp\\BancoFic\\Banco.csproj",
+      "projectUniqueName": "C:\\temp\\projeto\\Banco.csproj",
       "projectName": "Banco",
-      "projectPath": "C:\\temp\\BancoFic\\Banco.csproj",
+      "projectPath": "C:\\temp\\projeto\\Banco.csproj",
       "packagesPath": "C:\\Users\\john.barros\\.nuget\\packages\\",
-      "outputPath": "C:\\temp\\BancoFic\\obj\\",
+      "outputPath": "C:\\temp\\projeto\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

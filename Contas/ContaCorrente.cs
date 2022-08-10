@@ -6,9 +6,10 @@ namespace Banco
     class ContaCorrente : Conta
     {
         private double LimiteEmprestimo = 500;
-        
+
         public ContaCorrente() { }
-        public ContaCorrente(int numero, string titular) : base(numero, titular) { }
+        public ContaCorrente(string titular, int numero) : base(titular, numero) { }
+        public ContaCorrente(string titular, int numero, double saldo) : base(titular, numero) { Saldo = saldo; }
         public ContaCorrente(double limiteEmprestimo)
         {
             LimiteEmprestimo = limiteEmprestimo;
@@ -30,11 +31,12 @@ namespace Banco
             if (Saldo >= valor + 5 && valor > 0)
             {
                 Saldo -= valor + 5;
-            }else
+            }
+            else
             {
                 Console.WriteLine("SALDO INDISPONIVEL PARA OPERAÇÂO");
             }
-        
+
         }
     }
 }

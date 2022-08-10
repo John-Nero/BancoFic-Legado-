@@ -12,7 +12,6 @@ namespace Banco
         {
 
             OpcoesDeConta opcoes = new OpcoesDeConta();
-            SalvarELer salvar = new SalvarELer();
             Console.WriteLine("Selecione a ação que deseja executar:");
             Console.WriteLine(" 1 - Consultar conta poupança(Já existente) \n 2 -Criar conta poupanca \n 3 - Consultar conta corrente (já existente) \n 4 - Criar conta corrente \n 5 - Encerrar");
             int sel = int.Parse(Console.ReadLine());
@@ -22,22 +21,28 @@ namespace Banco
                 switch (sel)
                 {
                     case 1:
+                    Console.Clear();
                     Console.WriteLine("CONSULTAR CONTA POUPANÇA SELECIONADA");
                     opcoes.ConsultarContaPoupanca();
+                    Console.WriteLine("Agradecemos a preferência");
+                    loop = false;
                     break;
 
                     case 2:
+                    Console.Clear();
                     Console.WriteLine("CRIAR CONTA POUPANCA SELECIONADA");
                     opcoes.CriarContaPoupanca();
                     acaoPoupanca(opcoes);
                     break;
 
                     case 3:
+                    Console.Clear();
                     Console.WriteLine("CONSULTAR CONTA CORRENTE SELECIONADA");
                     opcoes.ConsultarContaCorrente();
                     break;
 
                     case 4:
+                    Console.Clear();
                     Console.WriteLine("CRIAR CONTA POUPANCA SELECIONADA");
                     opcoes.CriarContaCorrente();
                     acaoCorrente(opcoes);
@@ -54,7 +59,6 @@ namespace Banco
                     Console.Clear();
                     Main(args);
                     break;
-
                 }
             }
         }
@@ -112,24 +116,7 @@ namespace Banco
         }
 
         static void acaoCorrente(OpcoesDeConta opcoes)
-        {
-
-            Console.Write(" Haverá depósito inicial: (s/n)? ");
-            char res = char.Parse(Console.ReadLine().ToLower());
-            if (res.Equals('s'))
-            {
-                opcoes.DepositoCorrente();
-            }
-            else if (res.Equals('n'))
-            {
-                opcoes.MostrarDadosCorrente();
-            }
-            else
-            {
-                Console.WriteLine("OPÇÃO INVALIDA!");
-                Console.ReadLine();
-                acaoCorrente(opcoes);
-            }
+        {           
             bool loop = true;
             while (loop)
             {

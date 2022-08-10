@@ -22,6 +22,7 @@ namespace Banco
                     Console.WriteLine(" O NUMERO DE CONTA DEVE CONTER QUATRO DIGITOS");
                     Console.ReadLine();
                     Console.Clear();
+            
                     CriarContaPoupanca();
                 }
 
@@ -41,7 +42,7 @@ namespace Banco
                 }
                 poupanca.setNumero(numero);
                 poupanca.setTitular(titular);
-                salvar.RegistrarCliente_AtualizarClientePoupanca(numero, titular, poupanca.getSaldo());
+                salvar.AtualizarClientePoupanca( titular, numero, poupanca.getSaldo());
 
 
             voltaDeposito:
@@ -75,17 +76,15 @@ namespace Banco
         public void ConsultarContaPoupanca()
         {
             
-            Console.WriteLine("Digite os dados a seguir para consultar se sua conta já consta no sistema");
+            Console.WriteLine("Digite os dados a seguir para consultar se sua conta já consta no sistema\n");
 
             Console.Write("Nome do Titular:");
             string titular = Console.ReadLine();
 
-            Console.WriteLine("");
-
             Console.Write("Numero da conta:");
             int numero = int.Parse(Console.ReadLine());
                         
-            salvar.procurarLinhapoupanca(titular, numero);
+            salvar.ProcurarLinhaPoupanca(titular, numero);
              
         }
         public void DepositoPoupanca()
@@ -93,7 +92,7 @@ namespace Banco
             Console.WriteLine("\n Entre um quantidade para Deposito: ");
             Console.Write(" ");
             poupanca.Deposito(double.Parse(Console.ReadLine()));
-            salvar.RegistrarCliente_AtualizarClientePoupanca(poupanca.getNumero(), poupanca.getTitular(), poupanca.getSaldo());
+            salvar.AtualizarClientePoupanca(poupanca.getTitular(),poupanca.getNumero(), poupanca.getSaldo());
             MostrarDadosPoupanca();
         }
         public void SaquePoupanca()
@@ -102,7 +101,7 @@ namespace Banco
             Console.Write(" ");
             double saque = double.Parse(Console.ReadLine());
             poupanca.Saque(saque);
-            salvar.RegistrarCliente_AtualizarClientePoupanca(poupanca.getNumero(), poupanca.getTitular(), poupanca.getSaldo());
+            salvar.AtualizarClientePoupanca(poupanca.getTitular(),poupanca.getNumero(), poupanca.getSaldo());
             MostrarDadosPoupanca();
         }
         public void MostrarDadosPoupanca()
@@ -118,14 +117,14 @@ namespace Banco
         {
             Console.WriteLine("Saldo após renda:");
             poupanca.Rentabiliade();
-            salvar.RegistrarCliente_AtualizarClientePoupanca(poupanca.getNumero(), poupanca.getTitular(), poupanca.getSaldo());
+            salvar.AtualizarClientePoupanca( poupanca.getTitular(),poupanca.getNumero(), poupanca.getSaldo());
             Console.WriteLine(poupanca.getSaldo());
             Console.ReadLine();
         }
 
         // Coleta de dados e Opções da conta corrente
         ContaCorrente corrente = new ContaCorrente();
-        public Conta CriarContaCorrente()
+        public ContaCorrente CriarContaCorrente()
         {
             try
             {
@@ -144,8 +143,9 @@ namespace Banco
                 Console.Write(" Entre com o titular da conta: ");
                 string titular = Console.ReadLine();
 
+
                 int confirmacaoTitular = titular.Length;
-                if (confirmacaoTitular < 3 || confirmacaoTitular >= 10)
+                if (confirmacaoTitular < 3 || confirmacaoTitular >= 5)
                 {
                     Console.WriteLine(" NOME MUITO CURTO OU MUITO LONGO, DIGITE ENTRE QUATRO E DEZ CARACTERES");
                     Console.ReadLine();
@@ -155,7 +155,26 @@ namespace Banco
                 }
                 corrente.setNumero(numero);
                 corrente.setTitular(titular);
-                salvar.RegistrarClienteCorrente(numero, titular, corrente.getSaldo());
+                salvar.AtualizarClienteCorrente(titular, numero, corrente.getSaldo());
+
+
+            voltaDeposito:
+                Console.Write(" Haverá depósito inicial: (s/n)? ");
+                char res = char.Parse(Console.ReadLine().ToLower());
+                if (res.Equals('s'))
+                {
+                    DepositoCorrente();
+                }
+                else if (res.Equals('n'))
+                {
+                    MostrarDadosCorrente();
+                }
+                else
+                {
+                    Console.WriteLine("OPÇÃO INVALIDA!");
+                    Console.ReadLine();
+                    goto voltaDeposito;
+                }
                 return corrente;
             }
             catch (FormatException)
@@ -179,14 +198,14 @@ namespace Banco
             Console.WriteLine("");
             Console.WriteLine("Saldo:");
             double saldo = double.Parse(Console.ReadLine());
-            salvar.procurarLinhaCorrente(numero, titular, saldo);
+            salvar.ProcurarLinhaCorrente(titular,numero);
         }
         public void DepositoCorrente()
         {
             Console.WriteLine("\n Entre um valor para deposito: ");
             Console.Write(" ");
             corrente.Deposito(double.Parse(Console.ReadLine()));
-            salvar.RegistrarClienteCorrente(corrente.getNumero(), corrente.getTitular(), corrente.getSaldo());
+            salvar.AtualizarClienteCorrente(corrente.getTitular(),corrente.getNumero(), corrente.getSaldo());
             MostrarDadosCorrente();
         }
         public void SaqueCorrente()
@@ -194,7 +213,7 @@ namespace Banco
             Console.WriteLine("\n Entre um valor para saque: ");
             Console.Write(" ");
             corrente.Saque(double.Parse(Console.ReadLine()));
-            salvar.RegistrarClienteCorrente(corrente.getNumero(), corrente.getTitular(), corrente.getSaldo());
+            salvar.AtualizarClienteCorrente(corrente.getTitular(), corrente.getNumero(), corrente.getSaldo());
             MostrarDadosCorrente();
         }
         public void MostrarDadosCorrente()
@@ -210,7 +229,7 @@ namespace Banco
             Console.WriteLine("\n Entre o valor do empréstimo: ");
             Console.Write(" ");
             corrente.Emprestimo(double.Parse(Console.ReadLine()));
-            salvar.RegistrarClienteCorrente(corrente.getNumero(), corrente.getTitular(), corrente.getSaldo());
+            salvar.AtualizarClienteCorrente(corrente.getTitular(), corrente.getNumero(), corrente.getSaldo());
             Console.WriteLine(" Tecle Enter para continuar.");
             Console.ReadLine();
             Console.Clear();
