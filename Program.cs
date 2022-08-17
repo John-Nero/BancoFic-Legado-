@@ -1,7 +1,8 @@
-﻿//ATENÇÃO PARA VISUALIZAÇÃO DO DIAGRAMA UTILIZAR O SITE:
+﻿using System;
+
+//ATENÇÃO PARA VISUALIZAÇÃO DO DIAGRAMA UTILIZAR O SITE:
 //https://app.diagrams.net/
 
-using System;
 
 namespace Banco
 {
@@ -13,7 +14,7 @@ namespace Banco
 
             OpcoesDeConta opcoes = new OpcoesDeConta();
             Console.WriteLine("Selecione a ação que deseja executar:");
-            Console.WriteLine(" 1 - Consultar conta poupança(Já existente) \n 2 -Criar conta poupanca \n 3 - Consultar conta corrente (já existente) \n 4 - Criar conta corrente \n 5 - Encerrar");
+            Console.WriteLine(" 1 - Consultar conta poupança(Já existente) \n 2 - Criar conta poupanca \n 3 - Consultar conta corrente (já existente) \n 4 - Criar conta corrente \n 5 - Encerrar");
             int sel = int.Parse(Console.ReadLine());
             bool loop = true;
             while (loop)
@@ -24,8 +25,8 @@ namespace Banco
                     Console.Clear();
                     Console.WriteLine("CONSULTAR CONTA POUPANÇA SELECIONADA");
                     opcoes.ConsultarContaPoupanca();
-                    Console.WriteLine("Agradecemos a preferência");
-                    loop = false;
+                    acaoPoupanca(opcoes);
+
                     break;
 
                     case 2:
@@ -39,6 +40,7 @@ namespace Banco
                     Console.Clear();
                     Console.WriteLine("CONSULTAR CONTA CORRENTE SELECIONADA");
                     opcoes.ConsultarContaCorrente();
+                    acaoCorrente(opcoes);
                     break;
 
                     case 4:
@@ -74,6 +76,7 @@ namespace Banco
                     Console.WriteLine(" 1 - Deposito \n 2 - Saque \n 3 - Ver saldo \n 4 - Render \n 5 - Encerrar");
                     Console.Write("\n Opção: ");
                     int op = int.Parse(Console.ReadLine());
+                    Console.Clear();
 
                     switch (op)
                     {
@@ -116,7 +119,7 @@ namespace Banco
         }
 
         static void acaoCorrente(OpcoesDeConta opcoes)
-        {           
+        {
             bool loop = true;
             while (loop)
             {

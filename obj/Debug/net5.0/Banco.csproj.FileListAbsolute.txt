@@ -54,7 +54,6 @@ C:\projeto\obj\Debug\net5.0\Banco.csproj.CoreCompileInputs.cache
 C:\projeto\obj\Debug\net5.0\Banco.dll
 C:\projeto\obj\Debug\net5.0\ref\Banco.dll
 C:\projeto\obj\Debug\net5.0\Banco.pdb
-C:\temp\projeto\obj\Debug\net5.0\Banco.csproj.AssemblyReference.cache
 C:\temp\projeto\obj\Debug\net5.0\Banco.GeneratedMSBuildEditorConfig.editorconfig
 C:\temp\projeto\obj\Debug\net5.0\Banco.AssemblyInfoInputs.cache
 C:\temp\projeto\obj\Debug\net5.0\Banco.AssemblyInfo.cs
@@ -70,3 +69,4 @@ C:\temp\projeto\bin\Debug\net5.0\Banco.dll
 C:\temp\projeto\bin\Debug\net5.0\ref\Banco.dll
 C:\temp\projeto\bin\Debug\net5.0\Banco.pdb
 C:\temp\projeto\obj\Debug\net5.0\Banco.genruntimeconfig.cache
+C:\temp\projeto\obj\Debug\net5.0\Banco.csproj.AssemblyReference.cache
