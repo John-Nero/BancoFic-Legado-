@@ -15,7 +15,7 @@ namespace Banco
             LimiteEmprestimo = limiteEmprestimo;
         }
 
-        public void Emprestimo(double valor)
+        public void Emprestimo(double valor) // SolicitarEmprestimo
         {
             if (valor <= LimiteEmprestimo)
             {
@@ -26,7 +26,7 @@ namespace Banco
             }
             else { Console.WriteLine("O SEU LIMITE DE EMPRESTIMO NÃO É SUFICIENTE PARA A OPERAÇÃO"); }
         }
-        public override void Saque(double valor)
+        public override void Saque(double valor) // Sacar
         {
             if (Saldo >= valor + 5 && valor > 0)
             {

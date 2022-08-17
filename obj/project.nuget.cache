@@ -1,8 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "9TC8YRjLZhWnSqd7xid3Hq4Xeai8iOISvDsRGNg3RQP6KxJgvDsYfEkNQuLB3ufLzEThxzTrLUBj6IQzzPTIHw==",
+  "dgSpecHash": "Gv1+bACokPGoX3dFpDKm7r2V4xB64qFCddYrcsVCUNl19i9YWFzY20PEaLWrzSU0GdzUUi3NhfSyz3xKKvH/Tw==",
   "success": true,
-  "projectFilePath": "C:\\temp\\a\\Banco.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "projectFilePath": "C:\\StudyFolder\\BancoFic\\Banco.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\leonardo.pacheco\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://cs01tfsp01:81/NugetServer/nuget/'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
 }

@@ -39,11 +39,11 @@ namespace Banco
         {
             return Saldo;
         }
-        public void Deposito(double valor)
+        public void Deposito(double valor) // Depositar
         {
             Saldo += valor;
         }
-        public virtual void Saque(double valor)
+        public virtual void Saque(double valor) // Sacar
         {
             if (Saldo >= valor && valor > 0)
             {

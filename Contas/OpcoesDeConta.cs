@@ -3,17 +3,17 @@ using System.Globalization;
 
 namespace Banco
 {
-    class OpcoesDeConta
+    class OpcoesDeConta // se atentar aos modificadores de acesso e reestruturar para tirar duplicidade de codigo
     {
-        SalvarELer salvar = new SalvarELer();
+        SalvarELer salvar = new SalvarELer(); // iniciar letra maiuscula
 
         // coleta de dados e Opções da conta poupança
-        ContaPoupanca poupanca = new ContaPoupanca();
+        ContaPoupanca poupanca = new ContaPoupanca(); // Cuidado com a quebra de estrutura de Atributos para cima e metodos para baixo EX: linha 171
         public ContaPoupanca CriarContaPoupanca()
         {
             try
             {
-                salvar.SalvarEmListaPoupanca();
+                salvar.SalvarEmListaPoupanca(); // Qual o intuito dessa linha?
 
                 Console.Write(" Entre com o numero da conta: ");
                 int numero = int.Parse(Console.ReadLine());
@@ -28,7 +28,7 @@ namespace Banco
                             Console.WriteLine("NUMERO DE CONTA JÁ CONSTA NO SISTEMA");
                             Console.ReadLine();
                             Console.Clear();
-                            CriarContaPoupanca();
+                            CriarContaPoupanca(); // Encerrar o codigo
                         }
                     }
                 }
@@ -87,7 +87,7 @@ namespace Banco
                 throw;
             }
         }
-        public void ConsultarContaPoupanca()
+        public void ConsultarContaPoupanca() 
         {
             Console.WriteLine("Digite os dados a seguir para consultar se sua conta já consta no sistema\n");
 
@@ -168,12 +168,12 @@ namespace Banco
         }
 
         // Coleta de dados e Opções da conta corrente
-        ContaCorrente corrente = new ContaCorrente();
-        public ContaCorrente CriarContaCorrente()
+        ContaCorrente corrente = new ContaCorrente(); // Conta perdida no meio do codigo
+        public ContaCorrente CriarContaCorrente() 
         {
             try
             {
-                salvar.SalvarEmListaCorrente();
+                salvar.SalvarEmListaCorrente(); // Qual o intuito dessa linha existir?
 
                 Console.Write(" Entre com o numero da conta: ");
                 int numero = int.Parse(Console.ReadLine());
@@ -251,7 +251,7 @@ namespace Banco
         {
             Console.WriteLine("Digite os dados a seguir para consultar se sua conta já consta no sistema\n");
 
-            Console.Write("Nome do Titular:");
+            Console.Write("Nome do Titular:"); // apenas numero da conta ja basta
             string titular = Console.ReadLine();
 
             Console.Write("Numero da conta:");

@@ -8,23 +8,26 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\john.barros\\.nuget\\packages\\": {},
+    "C:\\Users\\leonardo.pacheco\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\temp\\a\\Banco.csproj",
+      "projectUniqueName": "C:\\StudyFolder\\BancoFic\\Banco.csproj",
       "projectName": "Banco",
-      "projectPath": "C:\\temp\\a\\Banco.csproj",
-      "packagesPath": "C:\\Users\\john.barros\\.nuget\\packages\\",
-      "outputPath": "C:\\temp\\a\\obj\\",
+      "projectPath": "C:\\StudyFolder\\BancoFic\\Banco.csproj",
+      "packagesPath": "C:\\Users\\leonardo.pacheco\\.nuget\\packages\\",
+      "outputPath": "C:\\StudyFolder\\BancoFic\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\john.barros\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\leonardo.pacheco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -32,7 +35,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://cs01tfsp01:81/NugetServer/nuget/": {}
+        "http://cs01tfsp01:81/NugetServer/nuget/": {},
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
@@ -55,17 +59,32 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.17, 5.0.17]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://cs01tfsp01:81/NugetServer/nuget/'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
 }

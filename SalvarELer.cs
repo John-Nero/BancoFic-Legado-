@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Banco
 {
 
-    class SalvarELer
+    class SalvarELer //modificador de acesso na classe e nos atributos
     {
         //Caminhos Para Local De Busca
         internal const string CaminhoPoupanca = @"C:\temp\projeto\DadosClientes\DadosDosClientesPoupanca.txt";
@@ -13,7 +13,7 @@ namespace Banco
         //Metodos de Save e atualização da conta poupanca
         public List<ContaPoupanca> LIstaDasPoupancas = new List<ContaPoupanca>();
 
-        internal List<ContaPoupanca> SalvarEmListaPoupanca()
+        internal List<ContaPoupanca> SalvarEmListaPoupanca() // Sugestao de mudança de nome LerTxtParaLista ou então mais hardcore TxtToList()
         {
             //john | 4578 | 0
             try
@@ -76,9 +76,9 @@ namespace Banco
         }
 
         //Metodos de save e atualização da conta corrente
-        public List<ContaCorrente> LIstaDasCorrentes = new List<ContaCorrente>();
+        public List<ContaCorrente> LIstaDasCorrentes = new List<ContaCorrente>(); // cuidado com atributo perdido no meio do codigo
 
-        internal List<ContaCorrente> SalvarEmListaCorrente()
+        internal List<ContaCorrente> SalvarEmListaCorrente() // Sugestao de mudança de nome LerTxtContasCorrente ou então mais hardcore ReadCCTxtToList()
         {
             //john | 4578 | 0
             try
@@ -100,8 +100,8 @@ namespace Banco
             }
             catch (Exception e) { Console.WriteLine(e); throw; }
         }
-        public void AtualizarClienteCorrente(string titular, int numero, double valor)
-        {
+        public void AtualizarClienteCorrente(string titular, int numero, double valor) // nao é necessario receber 3 atributos, apenas uma conta corrente. Cuidar nome dos metodos
+        {                                                                              // pois nao existe classe Cliente e sim Conta.
             double saldo = valor;
             foreach (ContaCorrente conta in LIstaDasCorrentes)
             {
@@ -120,7 +120,7 @@ namespace Banco
             RegistrarClienteCorrente();
             Console.WriteLine($"\n TITULAR:{titular} NUMERO: {numero} SALDO: {saldo.ToString("F2")}\n");
         }
-        public void RegistrarClienteCorrente()
+        public void RegistrarClienteCorrente() // Salvar ListaContaCorrenteNoTxt
         {
             File.Delete(CaminhoCorrente);
             using var file = File.AppendText(CaminhoCorrente);
