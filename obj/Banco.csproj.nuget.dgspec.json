@@ -1,31 +1,17 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\temp\\Projeto\\Banco.csproj": {}
+    "C:\\temp\\Projeto\\BancoFic\\Banco.csproj": {}
   },
   "projects": {
-    "C:\\temp\\Projeto\\Banco.csproj": {
+    "C:\\temp\\Projeto\\BancoFic\\Banco.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\temp\\Projeto\\Banco.csproj",
+        "projectUniqueName": "C:\\temp\\Projeto\\BancoFic\\Banco.csproj",
         "projectName": "Banco",
-        "projectPath": "C:\\temp\\Projeto\\Banco.csproj",
+        "projectPath": "C:\\temp\\Projeto\\BancoFic\\Banco.csproj",
         "packagesPath": "C:\\Users\\john.barros\\.nuget\\packages\\",
-        "outputPath": "C:\\temp\\Projeto\\obj\\",
-=======
-    "C:\\temp\\BancoFic\\Banco.csproj": {}
-  },
-  "projects": {
-    "C:\\temp\\BancoFic\\Banco.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\temp\\BancoFic\\Banco.csproj",
-        "projectName": "Banco",
-        "projectPath": "C:\\temp\\BancoFic\\Banco.csproj",
-        "packagesPath": "C:\\Users\\john.barros\\.nuget\\packages\\",
-        "outputPath": "C:\\temp\\BancoFic\\obj\\",
->>>>>>> parent of adbc1bb (Metodos da classe OpcoesDeConta adaptados para o novo sistema de save. A classe SalvarELer sofreu grandes mudanças para pode efetuar de maneira mais rapida e pratica as ações de ler e salvar novas contas, modelo de save foi alterado de --DADOS DA CONTA: NOME DO TITULAR: [NOME] | NUMERO DE CONTA: [NUMERO] | SALDO DE CONTA: [SALDO]-- para --[NOME] | [NUMERO] | [SALDO]--  para almentar a efetividade do sistema de leitura.)
+        "outputPath": "C:\\temp\\Projeto\\BancoFic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

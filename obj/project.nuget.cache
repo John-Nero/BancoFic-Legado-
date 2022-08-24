@@ -1,21 +1,15 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "Dyty+C17SGuh+X9W/Ap6aUCdFSh2d2sgialgBMOQWH4TEJeaH3j3BCLONoWKEYn0D0eYvlX5reIDjRoFNvtrzQ==",
+  "dgSpecHash": "TGLOtYTRdj8pAIs/QWaybdBYHywucvK3XOgRvJ4Ogg2Do359gO1LlzJL1HoIJiSUGdEpm/YnOndP6qjO2+FmSw==",
   "success": true,
-  "projectFilePath": "C:\\temp\\Projeto\\Banco.csproj",
-=======
-  "dgSpecHash": "woN6Q3ZWWCNd4G7Mzk2jSlgkRwN7O1Vpi4Y8wXYnrBv/NW7Fka3qMGT1oKJ2Dm2oUNQCPDOE5Y6sNU7vkw5QHA==",
-  "success": true,
-  "projectFilePath": "C:\\temp\\BancoFic\\Banco.csproj",
->>>>>>> parent of adbc1bb (Metodos da classe OpcoesDeConta adaptados para o novo sistema de save. A classe SalvarELer sofreu grandes mudanças para pode efetuar de maneira mais rapida e pratica as ações de ler e salvar novas contas, modelo de save foi alterado de --DADOS DA CONTA: NOME DO TITULAR: [NOME] | NUMERO DE CONTA: [NUMERO] | SALDO DE CONTA: [SALDO]-- para --[NOME] | [NUMERO] | [SALDO]--  para almentar a efetividade do sistema de leitura.)
+  "projectFilePath": "C:\\temp\\Projeto\\BancoFic\\Banco.csproj",
   "expectedPackageFiles": [],
   "logs": [
     {
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\temp\\Projeto\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+      "message": "Problem reading the cache file C:\\temp\\Projeto\\BancoFic\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
     }
   ]
 }
