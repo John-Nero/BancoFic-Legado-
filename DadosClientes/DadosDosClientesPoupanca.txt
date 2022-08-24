@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-john | 4578 | 315,00
-marcus | 4512 | 5,25
-=======
-DADOS DA CONTA | NUMERO: 4587 | TITULAR: john | SALDO: 0
-DADOS DA CONTA | NUMERO: 4587 | TITULAR: john | SALDO: 100
->>>>>>> parent of adbc1bb (Metodos da classe OpcoesDeConta adaptados para o novo sistema de save. A classe SalvarELer sofreu grandes mudanças para pode efetuar de maneira mais rapida e pratica as ações de ler e salvar novas contas, modelo de save foi alterado de --DADOS DA CONTA: NOME DO TITULAR: [NOME] | NUMERO DE CONTA: [NUMERO] | SALDO DE CONTA: [SALDO]-- para --[NOME] | [NUMERO] | [SALDO]--  para almentar a efetividade do sistema de leitura.)
