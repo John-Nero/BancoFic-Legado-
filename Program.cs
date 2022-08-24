@@ -14,8 +14,11 @@ namespace Banco
 
             OpcoesDeConta opcoes = new OpcoesDeConta();
             SalvarELer salvar = new SalvarELer();
+<<<<<<< HEAD
             ContaPoupanca conta = new ContaPoupanca();
             salvar.AtualizarContaPoupanca(conta);
+=======
+>>>>>>> parent of adbc1bb (Metodos da classe OpcoesDeConta adaptados para o novo sistema de save. A classe SalvarELer sofreu grandes mudanças para pode efetuar de maneira mais rapida e pratica as ações de ler e salvar novas contas, modelo de save foi alterado de --DADOS DA CONTA: NOME DO TITULAR: [NOME] | NUMERO DE CONTA: [NUMERO] | SALDO DE CONTA: [SALDO]-- para --[NOME] | [NUMERO] | [SALDO]--  para almentar a efetividade do sistema de leitura.)
             Console.WriteLine("Selecione a ação que deseja executar:");
             Console.WriteLine(" 1 - Consultar conta poupança(Já existente) \n 2 - Criar conta poupanca \n 3 - Consultar conta corrente (já existente) \n 4 - Criar conta corrente \n 5 - Encerrar");
             int sel = int.Parse(Console.ReadLine());
@@ -25,29 +28,28 @@ namespace Banco
                 switch (sel)
                 {
                     case 1:
-                    Console.Clear();
                     Console.WriteLine("CONSULTAR CONTA POUPANÇA SELECIONADA");
                     opcoes.ConsultarContaPoupanca();
+<<<<<<< HEAD
                     acaoPoupanca(opcoes);
 
+=======
+>>>>>>> parent of adbc1bb (Metodos da classe OpcoesDeConta adaptados para o novo sistema de save. A classe SalvarELer sofreu grandes mudanças para pode efetuar de maneira mais rapida e pratica as ações de ler e salvar novas contas, modelo de save foi alterado de --DADOS DA CONTA: NOME DO TITULAR: [NOME] | NUMERO DE CONTA: [NUMERO] | SALDO DE CONTA: [SALDO]-- para --[NOME] | [NUMERO] | [SALDO]--  para almentar a efetividade do sistema de leitura.)
                     break;
 
                     case 2:
-                    Console.Clear();
                     Console.WriteLine("CRIAR CONTA POUPANCA SELECIONADA");
                     opcoes.CriarContaPoupanca();
                     acaoPoupanca(opcoes);
                     break;
 
                     case 3:
-                    Console.Clear();
                     Console.WriteLine("CONSULTAR CONTA CORRENTE SELECIONADA");
                     opcoes.ConsultarContaCorrente();
                     acaoCorrente(opcoes);
                     break;
 
                     case 4:
-                    Console.Clear();
                     Console.WriteLine("CRIAR CONTA POUPANCA SELECIONADA");
                     opcoes.CriarContaCorrente();
                     acaoCorrente(opcoes);
@@ -64,6 +66,7 @@ namespace Banco
                     Console.Clear();
                     Main(args);
                     break;
+
                 }
             }
         }
@@ -123,6 +126,26 @@ namespace Banco
 
         static void acaoCorrente(OpcoesDeConta opcoes)
         {
+<<<<<<< HEAD
+=======
+
+            Console.Write(" Haverá depósito inicial: (s/n)? ");
+            char res = char.Parse(Console.ReadLine().ToLower());
+            if (res.Equals('s'))
+            {
+                opcoes.DepositoCorrente();
+            }
+            else if (res.Equals('n'))
+            {
+                opcoes.MostrarDadosCorrente();
+            }
+            else
+            {
+                Console.WriteLine("OPÇÃO INVALIDA!");
+                Console.ReadLine();
+                acaoCorrente(opcoes);
+            }
+>>>>>>> parent of adbc1bb (Metodos da classe OpcoesDeConta adaptados para o novo sistema de save. A classe SalvarELer sofreu grandes mudanças para pode efetuar de maneira mais rapida e pratica as ações de ler e salvar novas contas, modelo de save foi alterado de --DADOS DA CONTA: NOME DO TITULAR: [NOME] | NUMERO DE CONTA: [NUMERO] | SALDO DE CONTA: [SALDO]-- para --[NOME] | [NUMERO] | [SALDO]--  para almentar a efetividade do sistema de leitura.)
             bool loop = true;
             while (loop)
             {

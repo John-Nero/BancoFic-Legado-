@@ -1,8 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+
 namespace Banco
 {
+<<<<<<< HEAD
 
     public class SalvarELer
     {
@@ -14,20 +16,72 @@ namespace Banco
         public List<ContaPoupanca> LIstaDasPoupancas = new List<ContaPoupanca>();
 
         internal List<ContaPoupanca> TxtParaPoupancas()
+=======
+    class SalvarELer
+    {
+
+        //CaminhosParaLocalDeBusca
+        const string CaminhoPoupanca = @"C:\temp\BancoFic\DadosClientes\DadosDosClientesPoupanca.txt";
+        const string CaminhoCorrente = @"C:\temp\BancoFic\DadosClientes\DadosDosClientesCorrente.txt";
+
+        //Metodos de divição de dados
+        internal int NumeroDeConta(string ModeloParaDivisao)
         {
-            //john | 4578 | 0
+            //DADOS DA CONTA | NUMERO: 4578 | TITULAR: john | SALDO: 0
+
+            string[] ModeloInteiro = ModeloParaDivisao.Split(" | ");
+            string[] numeroSemFormat = ModeloInteiro[1].Split("NUMERO: ");
+            int numeroFormat = int.Parse(numeroSemFormat[1]);
+            return numeroFormat;
+        }
+        internal string TitularDeConta(string ModeloParaDivisao)
+        {
+            //DADOS DA CONTA | NUMERO: 4578 | TITULAR: john | SALDO: 0
+
+            string[] ModeloInteiro = ModeloParaDivisao.Split(" | ");
+            string[] titularSemFormat = ModeloInteiro[2].Split("TITULAR: ");
+            string titularFormat = titularSemFormat[1];
+            return titularFormat;
+        }
+        internal double SaldoDeConta(string ModeloParaDivisao)
+        {
+            //DADOS DA CONTA | NUMERO: 4578 | TITULAR: john | SALDO: 0
+
+            string[] ModeloInteiro = ModeloParaDivisao.Split(" | ");
+            string[] saldoSemFormat = ModeloInteiro[3].Split("SALDO: ");
+            double saldoFormat = double.Parse(saldoSemFormat[1]);
+            return saldoFormat;
+        }
+
+        //Metodos de Save e procura da conta poupanca
+        public void RegistrarCliente_AtualizarClientePoupanca(int numero, string titular, double saldo)
+>>>>>>> parent of adbc1bb (Metodos da classe OpcoesDeConta adaptados para o novo sistema de save. A classe SalvarELer sofreu grandes mudanças para pode efetuar de maneira mais rapida e pratica as ações de ler e salvar novas contas, modelo de save foi alterado de --DADOS DA CONTA: NOME DO TITULAR: [NOME] | NUMERO DE CONTA: [NUMERO] | SALDO DE CONTA: [SALDO]-- para --[NOME] | [NUMERO] | [SALDO]--  para almentar a efetividade do sistema de leitura.)
+        {
+            using var file = File.AppendText(CaminhoPoupanca);
+            file.WriteLine($"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}");
+            file.Close();
+        }
+
+        public void procurarLinhapoupanca(string titular, int numero)
+        {
+
             try
             {
+                List<string> ModelosDeConta = new List<string>();
+                List<ContaPoupanca> LIstaDasPoupancas = new List<ContaPoupanca>();
                 string[] LeTexto = File.ReadAllLines(CaminhoPoupanca);
+
+                
                 foreach (string s in LeTexto)
                 {
-                    string[] ModeloInteiro = s.Split(" | ");
+                    
+                    int numeroPararRegistro = NumeroDeConta(s);
+                    string titularPararRegistro = TitularDeConta(s);
+                    double saldoPararRegistro = SaldoDeConta(s);
 
-                    string titular = ModeloInteiro[0];
-                    int numero = int.Parse(ModeloInteiro[1]);
-                    double saldo = double.Parse(ModeloInteiro[2]);
-                    ContaPoupanca contacompleta = new ContaPoupanca(titular, numero, saldo);
+                    LIstaDasPoupancas.Add(new ContaPoupanca(numeroPararRegistro, titularPararRegistro, saldoPararRegistro));
 
+<<<<<<< HEAD
                     LIstaDasPoupancas.Add(contacompleta);
 
                 }
@@ -147,5 +201,67 @@ namespace Banco
             file.Close();
         }
 
+=======
+                    
+                }
+                
+                foreach (ContaPoupanca conta in LIstaDasPoupancas)
+                {
+                    if (conta.getNumero() == numero && conta.getTitular() == titular)
+                    {
+                        Console.WriteLine(" CONTA SELECIONADA:");
+                        Console.WriteLine($"TITULAR:{conta.getTitular()} NUMERO: {conta.getNumero()} SALDO: {conta.getSaldo().ToString("F2")}");
+                        
+                    }
+                    else { Console.WriteLine("CONTA NÃO LOCALIZADA."); }
+                }
+
+            }
+            catch (FieldAccessException e)
+            {
+                Console.WriteLine("Ops... isso não deveria ter acontecido.");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        //Metodos de Save e procura da conta corrente
+        public void RegistrarClienteCorrente(int numero, string titular, double saldo)
+        {
+            using var file = File.AppendText(CaminhoCorrente);
+            file.WriteLine($"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}");
+            file.Close();
+        }
+
+        public void procurarLinhaCorrente(int numero, string titular, double saldo)
+        {
+            try
+            {
+                string a = $"DADOS DA CONTA | NUMERO: {numero} | TITULAR: {titular} | SALDO: {saldo}";
+                string[] leOTexto = File.ReadAllLines(CaminhoCorrente);
+
+                foreach (string s in leOTexto)
+                {
+                    if (s.Equals(a))
+                    {
+                        Console.WriteLine(s);
+                    }
+                }
+            }
+            catch (FieldAccessException e)
+            {
+                Console.WriteLine("Ops... isso não deveria ter acontecido.");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+
+
+
+
+
+>>>>>>> parent of adbc1bb (Metodos da classe OpcoesDeConta adaptados para o novo sistema de save. A classe SalvarELer sofreu grandes mudanças para pode efetuar de maneira mais rapida e pratica as ações de ler e salvar novas contas, modelo de save foi alterado de --DADOS DA CONTA: NOME DO TITULAR: [NOME] | NUMERO DE CONTA: [NUMERO] | SALDO DE CONTA: [SALDO]-- para --[NOME] | [NUMERO] | [SALDO]--  para almentar a efetividade do sistema de leitura.)
     }
 }
+
+
+
