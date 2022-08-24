@@ -22,7 +22,7 @@ namespace Banco
                 {
                     foreach (ContaPoupanca conta in Salvar.LIstaDasPoupancas)
                     {
-                        if (conta.getNumero() == numero)
+                        if (conta.Numero == numero)
                         {
                             Console.WriteLine("NUMERO DE CONTA JÁ CONSTA NO SISTEMA");
                             Console.ReadLine();
@@ -102,15 +102,16 @@ namespace Banco
                 Salvar.TxtParaPoupancas();
                 foreach (ContaPoupanca conta in Salvar.LIstaDasPoupancas)
                 {
-                    if (conta.getNumero() == numero && conta.getTitular() == titular)
+                    if (conta.Numero == numero && conta.Titular == titular)
                     {
+                        
                         Console.Clear();
                         Console.WriteLine(" CONTA SELECIONADA:");
-                        Console.WriteLine($"\n TITULAR:{conta.getTitular()} NUMERO: {conta.getNumero()} SALDO: {conta.getSaldo().ToString("F2")}\n");
+                        Console.WriteLine($"\n TITULAR:{conta.Titular} NUMERO: {conta.Numero} SALDO: {conta.Saldo.ToString("F2")}\n");
                         Confirmação++;
                         Poupanca.setNumero(numero);
                         Poupanca.setTitular(titular);
-                        Poupanca.Depositar(conta.getSaldo());
+                        Poupanca.Depositar(conta.Saldo);
                     }
                 }
                 if (Confirmação == 0)
@@ -147,7 +148,7 @@ namespace Banco
         {
             Console.WriteLine(" Saldo atualizado: ");
             Console.Write("\n Dados da conta:");
-            Console.WriteLine($"\n Nº da Conta: {Poupanca.getNumero()} , Titular: {Poupanca.getTitular()}, Saldo: $ {Poupanca.getSaldo().ToString("F2")}\n");
+            Console.WriteLine($"\n Nº da Conta: {Poupanca.Numero} , Titular: {Poupanca.Titular}, Saldo: $ {Poupanca.Saldo.ToString("F2")}\n");
             Console.WriteLine(" Tecle Enter para continuar.");
             Console.ReadLine();
             Console.Clear();
@@ -173,7 +174,7 @@ namespace Banco
                 {
                     foreach (ContaCorrente conta in Salvar.LIstaDasCorrentes)
                     {
-                        if (conta.getNumero() == numero)
+                        if (conta.Numero == numero)
                         {
                             Console.WriteLine("NUMERO DE CONTA JÁ CONSTA NO SISTEMA");
                             Console.ReadLine();
@@ -251,15 +252,15 @@ namespace Banco
                 Salvar.TxtParaCorrentes();
                 foreach (ContaCorrente conta in Salvar.LIstaDasCorrentes)
                 {
-                    if (conta.getNumero() == numero && conta.getTitular() == titular)
+                    if (conta.Numero == numero && conta.Titular == titular)
                     {
                         Console.Clear();
                         Console.WriteLine(" CONTA SELECIONADA:");
-                        Console.WriteLine($"\n TITULAR:{conta.getTitular()} NUMERO: {conta.getNumero()} SALDO: {conta.getSaldo().ToString("F2")}\n");
+                        Console.WriteLine($"\n TITULAR:{conta.Titular} NUMERO: {conta.Numero} SALDO: {conta.Saldo.ToString("F2")}\n");
                         Confirmação++;
                         Corrente.setNumero(numero);
                         Corrente.setTitular(titular);
-                        Corrente.Depositar(conta.getSaldo());
+                        Corrente.Depositar(conta.Saldo);
                     }
                 }
                 if (Confirmação == 0)
@@ -294,7 +295,7 @@ namespace Banco
         public void MostrarDadosCorrente()
         {
             Console.Write("\n Dados da conta:");
-            Console.WriteLine($"\n Nº da Conta: {Corrente.getNumero()}, Titular: {Corrente.getTitular()}, Saldo: $ {Corrente.getSaldo().ToString("F2")}\n");
+            Console.WriteLine($"\n Nº da Conta: {Corrente.Numero}, Titular: {Corrente.Titular}, Saldo: $ {Corrente.Saldo.ToString("F2")}\n");
             Console.WriteLine(" Tecle Enter para continuar.");
             Console.ReadLine();
             Console.Clear();

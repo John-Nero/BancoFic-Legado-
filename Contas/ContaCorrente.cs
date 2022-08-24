@@ -8,12 +8,8 @@ namespace Banco
         private double LimiteEmprestimo = 500;
 
         public ContaCorrente() { }
-        public ContaCorrente(string titular, int numero) : base(titular, numero) { }
-        public ContaCorrente(string titular, int numero, double saldo) : base(titular, numero) { Saldo = saldo; }
-        public ContaCorrente(double limiteEmprestimo)
-        {
-            LimiteEmprestimo = limiteEmprestimo;
-        }
+       
+        public ContaCorrente(string titular, int numero, double saldo) : base(titular, numero) {  Saldo = saldo; }
 
         public void SolicitarEmprestimo(double valor)
         {
@@ -21,7 +17,7 @@ namespace Banco
             {
                 Depositar(valor);
                 Console.WriteLine(" Saldo atualizado: ");
-                Console.WriteLine($" Saldo: $ {getSaldo().ToString("F2", CultureInfo.InvariantCulture)} \n");
+                Console.WriteLine($" Saldo: $ {Saldo.ToString("F2", CultureInfo.InvariantCulture)} \n");
                 LimiteEmprestimo -= valor;
             }
             else { Console.WriteLine("O SEU LIMITE DE EMPRESTIMO NÃO É SUFICIENTE PARA A OPERAÇÃO"); }

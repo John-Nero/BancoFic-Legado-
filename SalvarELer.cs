@@ -50,7 +50,7 @@ namespace Banco
             }
             foreach (ContaPoupanca conta in LIstaDasPoupancas)
             {
-                if (poupanca.getTitular() == conta.getTitular() && poupanca.getNumero() == conta.getNumero())
+                if (poupanca.Titular == conta.Titular && poupanca.Numero == conta.Numero)
                 {
 
                     LIstaDasPoupancas.Remove(conta);
@@ -59,11 +59,11 @@ namespace Banco
             }
 
             using var file = File.AppendText(CaminhoPoupanca);
-            LIstaDasPoupancas.Add(new ContaPoupanca(poupanca.getTitular(), poupanca.getNumero(), poupanca.getSaldo()));
+            LIstaDasPoupancas.Add(new ContaPoupanca(poupanca.Titular, poupanca.Numero, poupanca.Saldo));
             file.Close();
 
             SalvarListaContaPoupancaNoTxt();
-            Console.WriteLine($"\n TITULAR:{poupanca.getTitular()} NUMERO: {poupanca.getNumero()} SALDO: {poupanca.getSaldo().ToString("F2")}\n");
+            Console.WriteLine($"\n TITULAR:{poupanca.Titular} NUMERO: {poupanca.Numero} SALDO: {poupanca.Saldo.ToString("F2")}\n");
         }
         public void SalvarListaContaPoupancaNoTxt()
         {
@@ -73,9 +73,9 @@ namespace Banco
 
             foreach (ContaPoupanca conta in LIstaDasPoupancas)
             {
-                string titular = conta.getTitular();
-                int numero = conta.getNumero();
-                double saldo = conta.getSaldo();
+                string titular = conta.Titular;
+                int numero = conta.Numero;
+                double saldo = conta.Saldo;
                 file.WriteLine($"{titular} | {numero} | {saldo.ToString("F2")}");
             }
             file.Close();
@@ -116,7 +116,7 @@ namespace Banco
             }
             foreach (ContaCorrente conta in LIstaDasCorrentes)
             {
-                if (corrente.getTitular() == conta.getTitular() && corrente.getNumero() == conta.getNumero())
+                if (corrente.Titular == conta.Titular && corrente.Numero == conta.Numero)
                 {
 
                     LIstaDasCorrentes.Remove(conta);
@@ -125,11 +125,11 @@ namespace Banco
             }
 
             using var file = File.AppendText(CaminhoCorrente);
-            LIstaDasCorrentes.Add(new ContaCorrente(corrente.getTitular(), corrente.getNumero(), corrente.getSaldo()));
+            LIstaDasCorrentes.Add(new ContaCorrente(corrente.Titular, corrente.Numero, corrente.Saldo));
             file.Close();
 
             SalvarListaContaCorrenteNoTxt();
-            Console.WriteLine($"\n TITULAR:{corrente.getTitular()} NUMERO: {corrente.getNumero()} SALDO: {corrente.getSaldo().ToString("F2")}\n");
+            Console.WriteLine($"\n TITULAR:{corrente.Titular} NUMERO: {corrente.Numero} SALDO: {corrente.Saldo.ToString("F2")}\n");
         }
         public void SalvarListaContaCorrenteNoTxt()
         {
@@ -139,9 +139,9 @@ namespace Banco
 
             foreach (ContaCorrente conta in LIstaDasCorrentes)
             {
-                string titular = conta.getTitular();
-                int numero = conta.getNumero();
-                double saldo = conta.getSaldo();
+                string titular = conta.Titular;
+                int numero = conta.Numero;
+                double saldo = conta.Saldo;
                 file.WriteLine($"{titular} | {numero} | {saldo.ToString("F2")}");
             }
             file.Close();
