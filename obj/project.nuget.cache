@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "W2sUyLvO0VSI+rtNA5fzg+LuC5HtLtbImSnvhiGhkjn6VHYywgauAWVmqIwnK2BuoIFq+yCFY/vKlk457i5USw==",
+  "dgSpecHash": "Dyty+C17SGuh+X9W/Ap6aUCdFSh2d2sgialgBMOQWH4TEJeaH3j3BCLONoWKEYn0D0eYvlX5reIDjRoFNvtrzQ==",
   "success": true,
-  "projectFilePath": "C:\\temp\\Teste\\inplementaçãoDeUmaTelaHtmlNoCodigo\\codigo\\Banco.csproj",
+  "projectFilePath": "C:\\temp\\Projeto\\Banco.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\temp\\Projeto\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

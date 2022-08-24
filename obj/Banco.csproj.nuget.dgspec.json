@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\temp\\Teste\\inplementaçãoDeUmaTelaHtmlNoCodigo\\codigo\\Banco.csproj": {}
+    "C:\\temp\\Projeto\\Banco.csproj": {}
   },
   "projects": {
-    "C:\\temp\\Teste\\inplementaçãoDeUmaTelaHtmlNoCodigo\\codigo\\Banco.csproj": {
+    "C:\\temp\\Projeto\\Banco.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\temp\\Teste\\inplementaçãoDeUmaTelaHtmlNoCodigo\\codigo\\Banco.csproj",
+        "projectUniqueName": "C:\\temp\\Projeto\\Banco.csproj",
         "projectName": "Banco",
-        "projectPath": "C:\\temp\\Teste\\inplementaçãoDeUmaTelaHtmlNoCodigo\\codigo\\Banco.csproj",
+        "projectPath": "C:\\temp\\Projeto\\Banco.csproj",
         "packagesPath": "C:\\Users\\john.barros\\.nuget\\packages\\",
-        "outputPath": "C:\\temp\\Teste\\inplementaçãoDeUmaTelaHtmlNoCodigo\\codigo\\obj\\",
+        "outputPath": "C:\\temp\\Projeto\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

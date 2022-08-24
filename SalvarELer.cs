@@ -41,8 +41,8 @@ namespace Banco
         }
         public void AtualizarContaPoupanca(ContaPoupanca poupanca)
         {
-            
-            if(LIstaDasPoupancas.Count == 0)
+
+            if (LIstaDasPoupancas.Count == 0)
             {
                 TxtParaPoupancas();
             }
@@ -50,7 +50,7 @@ namespace Banco
             {
                 if (poupanca.getTitular() == conta.getTitular() && poupanca.getNumero() == conta.getNumero())
                 {
-                    
+
                     LIstaDasPoupancas.Remove(conta);
                     break;
                 }
@@ -59,7 +59,7 @@ namespace Banco
             using var file = File.AppendText(CaminhoPoupanca);
             LIstaDasPoupancas.Add(new ContaPoupanca(poupanca.getTitular(), poupanca.getNumero(), poupanca.getSaldo()));
             file.Close();
-            
+
             SalvarListaContaPoupancaNoTxt();
             Console.WriteLine($"\n TITULAR:{poupanca.getTitular()} NUMERO: {poupanca.getNumero()} SALDO: {poupanca.getSaldo().ToString("F2")}\n");
         }
@@ -78,7 +78,7 @@ namespace Banco
             }
             file.Close();
         }
-       
+
         //Metodos de save e atualização da conta corrente
         public List<ContaCorrente> LIstaDasCorrentes = new List<ContaCorrente>();
 

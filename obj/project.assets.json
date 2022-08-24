@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\temp\\Teste\\inplementaçãoDeUmaTelaHtmlNoCodigo\\codigo\\Banco.csproj",
+      "projectUniqueName": "C:\\temp\\Projeto\\Banco.csproj",
       "projectName": "Banco",
-      "projectPath": "C:\\temp\\Teste\\inplementaçãoDeUmaTelaHtmlNoCodigo\\codigo\\Banco.csproj",
+      "projectPath": "C:\\temp\\Projeto\\Banco.csproj",
       "packagesPath": "C:\\Users\\john.barros\\.nuget\\packages\\",
-      "outputPath": "C:\\temp\\Teste\\inplementaçãoDeUmaTelaHtmlNoCodigo\\codigo\\obj\\",
+      "outputPath": "C:\\temp\\Projeto\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -67,5 +67,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\temp\\Projeto\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

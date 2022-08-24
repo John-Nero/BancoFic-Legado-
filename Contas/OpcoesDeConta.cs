@@ -13,7 +13,7 @@ namespace Banco
         public ContaPoupanca CriarContaPoupanca()
         {
             try
-            { 
+            {
                 Console.Write(" Entre com o numero da conta: ");
                 int numero = int.Parse(Console.ReadLine());
 
@@ -171,7 +171,7 @@ namespace Banco
         {
             try
             {
-                
+
 
                 Console.Write(" Entre com o numero da conta: ");
                 int numero = int.Parse(Console.ReadLine());
