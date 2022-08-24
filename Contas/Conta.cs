@@ -2,48 +2,30 @@
 
 namespace Banco
 {
-    class Conta
+    public class Conta
     {
-        private int Numero;
-        private string Titular;
-        protected double Saldo;
+        public int Numero { get; private set;}
+        public string Titular { get; private set;}
+        public double Saldo { get; internal set;}
 
-        public Conta() { }
-        public Conta(string titular, int numero)
-        {
-            Numero = numero;
-            Titular = titular;
-        }
-
-
-
-        public int getNumero()
-        {
-            return Numero;
-        }
+        public Conta() {}
+        public Conta(string titular, int numero) {Numero = numero;Titular = titular;}
+        
         public void setNumero(int numero)
         {
             Numero = numero;
         }
-
-        public string getTitular()
-        {
-            return Titular;
-        }
+        
         public void setTitular(string titular)
         {
             Titular = titular;
         }
 
-        public double getSaldo()
-        {
-            return Saldo;
-        }
-        public void Deposito(double valor)
+        public void Depositar(double valor)
         {
             Saldo += valor;
         }
-        public virtual void Saque(double valor)
+        public virtual void Sacar(double valor)
         {
             if (Saldo >= valor && valor > 0)
             {

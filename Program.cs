@@ -13,6 +13,9 @@ namespace Banco
         {
 
             OpcoesDeConta opcoes = new OpcoesDeConta();
+            SalvarELer salvar = new SalvarELer();
+            ContaPoupanca conta = new ContaPoupanca();
+            salvar.AtualizarContaPoupanca(conta);
             Console.WriteLine("Selecione a ação que deseja executar:");
             Console.WriteLine(" 1 - Consultar conta poupança(Já existente) \n 2 - Criar conta poupanca \n 3 - Consultar conta corrente (já existente) \n 4 - Criar conta corrente \n 5 - Encerrar");
             int sel = int.Parse(Console.ReadLine());
@@ -107,9 +110,7 @@ namespace Banco
                         Console.ReadLine();
                         Console.Clear();
                         break;
-
                     }
-
                 }
                 catch (FormatException)
                 {
@@ -160,7 +161,6 @@ namespace Banco
                         Console.ReadLine();
                         Console.Clear();
                         break;
-
                     }
                 }
                 catch (FormatException)

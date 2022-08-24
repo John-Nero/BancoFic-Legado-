@@ -3,27 +3,26 @@ using System.Globalization;
 
 namespace Banco
 {
-    class OpcoesDeConta
+    public class OpcoesDeConta
     {
-        SalvarELer salvar = new SalvarELer();
-
+        SalvarELer Salvar = new SalvarELer();
+        ContaPoupanca Poupanca = new ContaPoupanca();
+        ContaCorrente Corrente = new ContaCorrente();
         // coleta de dados e Opções da conta poupança
-        ContaPoupanca poupanca = new ContaPoupanca();
+
         public ContaPoupanca CriarContaPoupanca()
         {
             try
             {
-                salvar.SalvarEmListaPoupanca();
-
                 Console.Write(" Entre com o numero da conta: ");
                 int numero = int.Parse(Console.ReadLine());
 
 
                 if (numero >= 1000 || numero <= 10000)
                 {
-                    foreach (ContaPoupanca conta in salvar.LIstaDasPoupancas)
+                    foreach (ContaPoupanca conta in Salvar.LIstaDasPoupancas)
                     {
-                        if (conta.getNumero() == numero)
+                        if (conta.Numero == numero)
                         {
                             Console.WriteLine("NUMERO DE CONTA JÁ CONSTA NO SISTEMA");
                             Console.ReadLine();
@@ -54,10 +53,9 @@ namespace Banco
                     Console.WriteLine($" Numero da conta:{numero}");
                     goto VoltaNome;
                 }
-                poupanca.setNumero(numero);
-                poupanca.setTitular(titular);
-                salvar.AtualizarClientePoupanca(titular, numero, poupanca.getSaldo());
-
+                Poupanca.setNumero(numero);
+                Poupanca.setTitular(titular);
+                Salvar.AtualizarContaPoupanca(Poupanca);
 
             voltaDeposito:
                 Console.Write(" Haverá depósito inicial: (s/n)? ");
@@ -76,7 +74,7 @@ namespace Banco
                     Console.ReadLine();
                     goto voltaDeposito;
                 }
-                return poupanca;
+                return Poupanca;
             }
             catch (FormatException)
             {
@@ -101,18 +99,19 @@ namespace Banco
             {
                 int Confirmação = 0;
 
-                salvar.SalvarEmListaPoupanca();
-                foreach (ContaPoupanca conta in salvar.LIstaDasPoupancas)
+                Salvar.TxtParaPoupancas();
+                foreach (ContaPoupanca conta in Salvar.LIstaDasPoupancas)
                 {
-                    if (conta.getNumero() == numero && conta.getTitular() == titular)
+                    if (conta.Numero == numero && conta.Titular == titular)
                     {
+                        
                         Console.Clear();
                         Console.WriteLine(" CONTA SELECIONADA:");
-                        Console.WriteLine($"\n TITULAR:{conta.getTitular()} NUMERO: {conta.getNumero()} SALDO: {conta.getSaldo().ToString("F2")}\n");
+                        Console.WriteLine($"\n TITULAR:{conta.Titular} NUMERO: {conta.Numero} SALDO: {conta.Saldo.ToString("F2")}\n");
                         Confirmação++;
-                        poupanca.setNumero(numero);
-                        poupanca.setTitular(titular);
-                        poupanca.Deposito(conta.getSaldo());
+                        Poupanca.setNumero(numero);
+                        Poupanca.setTitular(titular);
+                        Poupanca.Depositar(conta.Saldo);
                     }
                 }
                 if (Confirmação == 0)
@@ -134,26 +133,22 @@ namespace Banco
         {
             Console.WriteLine("\n Entre um quantidade para Deposito: ");
             Console.Write(" ");
-            double valor = double.Parse(Console.ReadLine());
-            poupanca.Deposito(valor);
-            salvar.AtualizarClientePoupanca(poupanca.getTitular(), poupanca.getNumero(), valor);
-
+            Poupanca.Depositar(double.Parse(Console.ReadLine()));
+            Salvar.AtualizarContaPoupanca(Poupanca);
         }
         public void SaquePoupanca()
         {
             Console.WriteLine("\n Entre um valor para saque: ");
             Console.Write(" ");
             double valor = double.Parse(Console.ReadLine());
-            poupanca.Saque(valor);
-            valor = valor * -1;
-            salvar.AtualizarClientePoupanca(poupanca.getTitular(), poupanca.getNumero(), valor);
-
+            Poupanca.Sacar(valor);
+            Salvar.AtualizarContaPoupanca(Poupanca);
         }
         public void MostrarDadosPoupanca()
         {
             Console.WriteLine(" Saldo atualizado: ");
             Console.Write("\n Dados da conta:");
-            Console.WriteLine($"\n Nº da Conta: {poupanca.getNumero()} , Titular: {poupanca.getTitular()}, Saldo: $ {poupanca.getSaldo().ToString("F2")}\n");
+            Console.WriteLine($"\n Nº da Conta: {Poupanca.Numero} , Titular: {Poupanca.Titular}, Saldo: $ {Poupanca.Saldo.ToString("F2")}\n");
             Console.WriteLine(" Tecle Enter para continuar.");
             Console.ReadLine();
             Console.Clear();
@@ -161,29 +156,25 @@ namespace Banco
         public void Render()
         {
             Console.WriteLine("Conta atualizada:");
-            poupanca.Deposito(poupanca.Rentabiliade());
-            salvar.AtualizarClientePoupanca(poupanca.getTitular(), poupanca.getNumero(), poupanca.Rentabiliade());
-
+            Poupanca.Depositar(Poupanca.Render());
+            Salvar.AtualizarContaPoupanca(Poupanca);
             Console.ReadLine();
         }
 
         // Coleta de dados e Opções da conta corrente
-        ContaCorrente corrente = new ContaCorrente();
+
         public ContaCorrente CriarContaCorrente()
         {
             try
             {
-                salvar.SalvarEmListaCorrente();
-
                 Console.Write(" Entre com o numero da conta: ");
                 int numero = int.Parse(Console.ReadLine());
 
-
                 if (numero >= 1000 || numero <= 10000)
                 {
-                    foreach (ContaCorrente conta in salvar.LIstaDasCorrentes)
+                    foreach (ContaCorrente conta in Salvar.LIstaDasCorrentes)
                     {
-                        if (conta.getNumero() == numero)
+                        if (conta.Numero == numero)
                         {
                             Console.WriteLine("NUMERO DE CONTA JÁ CONSTA NO SISTEMA");
                             Console.ReadLine();
@@ -204,7 +195,6 @@ namespace Banco
                 Console.Write(" Entre com o titular da conta: ");
                 string titular = Console.ReadLine();
 
-
                 int confirmacaoTitular = titular.Length;
                 if (confirmacaoTitular < 3 || confirmacaoTitular >= 15)
                 {
@@ -214,10 +204,9 @@ namespace Banco
                     Console.WriteLine($" Numero da conta:{numero}");
                     goto VoltaNome;
                 }
-                corrente.setNumero(numero);
-                corrente.setTitular(titular);
-                salvar.AtualizarClienteCorrente(titular, numero, corrente.getSaldo());
-
+                Corrente.setNumero(numero);
+                Corrente.setTitular(titular);
+                Salvar.AtualizarContaCorrente(Corrente);
 
             voltaDeposito:
                 Console.Write(" Haverá depósito inicial: (s/n)? ");
@@ -236,7 +225,7 @@ namespace Banco
                     Console.ReadLine();
                     goto voltaDeposito;
                 }
-                return corrente;
+                return Corrente;
             }
             catch (FormatException)
             {
@@ -260,18 +249,18 @@ namespace Banco
             try
             {
                 int Confirmação = 0;
-                salvar.SalvarEmListaCorrente();
-                foreach (ContaCorrente conta in salvar.LIstaDasCorrentes)
+                Salvar.TxtParaCorrentes();
+                foreach (ContaCorrente conta in Salvar.LIstaDasCorrentes)
                 {
-                    if (conta.getNumero() == numero && conta.getTitular() == titular)
+                    if (conta.Numero == numero && conta.Titular == titular)
                     {
                         Console.Clear();
                         Console.WriteLine(" CONTA SELECIONADA:");
-                        Console.WriteLine($"\n TITULAR:{conta.getTitular()} NUMERO: {conta.getNumero()} SALDO: {conta.getSaldo().ToString("F2")}\n");
+                        Console.WriteLine($"\n TITULAR:{conta.Titular} NUMERO: {conta.Numero} SALDO: {conta.Saldo.ToString("F2")}\n");
                         Confirmação++;
-                        corrente.setNumero(numero);
-                        corrente.setTitular(titular);
-                        corrente.Deposito(conta.getSaldo());
+                        Corrente.setNumero(numero);
+                        Corrente.setTitular(titular);
+                        Corrente.Depositar(conta.Saldo);
                     }
                 }
                 if (Confirmação == 0)
@@ -288,31 +277,25 @@ namespace Banco
                 Console.WriteLine(e.Message);
                 throw;
             }
-
         }
         public void DepositoCorrente()
         {
             Console.WriteLine("\n Entre um quantidade para Deposito: ");
             Console.Write(" ");
-            double valor = double.Parse(Console.ReadLine());
-            corrente.Deposito(valor);
-            salvar.AtualizarClienteCorrente(corrente.getTitular(), corrente.getNumero(), valor);
-
+            Corrente.Depositar(double.Parse(Console.ReadLine()));
+            Salvar.AtualizarContaCorrente(Corrente);
         }
         public void SaqueCorrente()
         {
             Console.WriteLine("\n Entre um valor para saque: ");
             Console.Write(" ");
-            double valor = double.Parse(Console.ReadLine());
-            corrente.Saque(valor);
-            valor = (valor + 5) * -1;
-            salvar.AtualizarClienteCorrente(corrente.getTitular(), corrente.getNumero(), valor);
-
+            Corrente.Sacar(double.Parse(Console.ReadLine()));
+            Salvar.AtualizarContaCorrente(Corrente);
         }
         public void MostrarDadosCorrente()
         {
             Console.Write("\n Dados da conta:");
-            Console.WriteLine($"\n Nº da Conta: {corrente.getNumero()}, Titular: {corrente.getTitular()}, Saldo: $ {corrente.getSaldo().ToString("F2")}\n");
+            Console.WriteLine($"\n Nº da Conta: {Corrente.Numero}, Titular: {Corrente.Titular}, Saldo: $ {Corrente.Saldo.ToString("F2")}\n");
             Console.WriteLine(" Tecle Enter para continuar.");
             Console.ReadLine();
             Console.Clear();
@@ -321,14 +304,12 @@ namespace Banco
         {
             Console.WriteLine("\n Entre o valor do empréstimo: ");
             Console.Write(" ");
-            double valor = double.Parse(Console.ReadLine());
-            corrente.Emprestimo(valor);
-            salvar.AtualizarClienteCorrente(corrente.getTitular(), corrente.getNumero(), valor);
+            Corrente.SolicitarEmprestimo(double.Parse(Console.ReadLine()));
+            Salvar.AtualizarContaCorrente(Corrente);
             Console.WriteLine(" Tecle Enter para continuar.");
             Console.ReadLine();
             Console.Clear();
         }
-
     }
 }
 

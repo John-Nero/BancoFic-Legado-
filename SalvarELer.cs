@@ -4,16 +4,18 @@ using System.Collections.Generic;
 namespace Banco
 {
 
-    class SalvarELer
+    public class SalvarELer
     {
         //Caminhos Para Local De Busca
         internal const string CaminhoPoupanca = @"C:\temp\projeto\DadosClientes\DadosDosClientesPoupanca.txt";
         internal const string CaminhoCorrente = @"C:\temp\projeto\DadosClientes\DadosDosClientesCorrente.txt";
 
-        //Metodos de Save e atualização da conta poupanca
+        //Listas dos tipos de conta
         public List<ContaPoupanca> LIstaDasPoupancas = new List<ContaPoupanca>();
+        public List<ContaCorrente> LIstaDasCorrentes = new List<ContaCorrente>();
 
-        internal List<ContaPoupanca> SalvarEmListaPoupanca()
+        //Metodos de Save e atualização da conta poupanca
+        internal List<ContaPoupanca> TxtParaPoupancas()
         {
             //john | 4578 | 0
             try
@@ -39,27 +41,31 @@ namespace Banco
                 throw;
             }
         }
-        public void AtualizarClientePoupanca(string titular, int numero, double valor)
+        public void AtualizarContaPoupanca(ContaPoupanca poupanca)
         {
-            double saldo = valor;
+
+            if (LIstaDasPoupancas.Count == 0)
+            {
+                TxtParaPoupancas();
+            }
             foreach (ContaPoupanca conta in LIstaDasPoupancas)
             {
-                if (titular == conta.getTitular() && numero == conta.getNumero())
+                if (poupanca.Titular == conta.Titular && poupanca.Numero == conta.Numero)
                 {
-                    saldo += conta.getSaldo();
-                    File.Delete(CaminhoPoupanca);
+
                     LIstaDasPoupancas.Remove(conta);
                     break;
                 }
             }
 
             using var file = File.AppendText(CaminhoPoupanca);
-            LIstaDasPoupancas.Add(new ContaPoupanca(titular, numero, saldo));
+            LIstaDasPoupancas.Add(new ContaPoupanca(poupanca.Titular, poupanca.Numero, poupanca.Saldo));
             file.Close();
-            RegistrarClientePoupanca();
-            Console.WriteLine($"\n TITULAR:{titular} NUMERO: {numero} SALDO: {saldo.ToString("F2")}\n");
+
+            SalvarListaContaPoupancaNoTxt();
+            Console.WriteLine($"\n TITULAR:{poupanca.Titular} NUMERO: {poupanca.Numero} SALDO: {poupanca.Saldo.ToString("F2")}\n");
         }
-        public void RegistrarClientePoupanca()
+        public void SalvarListaContaPoupancaNoTxt()
         {
             File.Delete(CaminhoPoupanca);
 
@@ -67,18 +73,16 @@ namespace Banco
 
             foreach (ContaPoupanca conta in LIstaDasPoupancas)
             {
-                string titular = conta.getTitular();
-                int numero = conta.getNumero();
-                double saldo = conta.getSaldo();
+                string titular = conta.Titular;
+                int numero = conta.Numero;
+                double saldo = conta.Saldo;
                 file.WriteLine($"{titular} | {numero} | {saldo.ToString("F2")}");
             }
             file.Close();
         }
 
         //Metodos de save e atualização da conta corrente
-        public List<ContaCorrente> LIstaDasCorrentes = new List<ContaCorrente>();
-
-        internal List<ContaCorrente> SalvarEmListaCorrente()
+        internal List<ContaCorrente> TxtParaCorrentes()
         {
             //john | 4578 | 0
             try
@@ -98,38 +102,46 @@ namespace Banco
                 }
                 return LIstaDasCorrentes;
             }
-            catch (Exception e) { Console.WriteLine(e); throw; }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
-        public void AtualizarClienteCorrente(string titular, int numero, double valor)
+        public void AtualizarContaCorrente(ContaCorrente corrente)
         {
-            double saldo = valor;
+            if (LIstaDasCorrentes.Count == 0)
+            {
+                TxtParaPoupancas();
+            }
             foreach (ContaCorrente conta in LIstaDasCorrentes)
             {
-                if (titular == conta.getTitular() && numero == conta.getNumero())
+                if (corrente.Titular == conta.Titular && corrente.Numero == conta.Numero)
                 {
-                    saldo += conta.getSaldo();
-                    File.Delete(CaminhoCorrente);
+
                     LIstaDasCorrentes.Remove(conta);
                     break;
                 }
             }
 
             using var file = File.AppendText(CaminhoCorrente);
-            LIstaDasCorrentes.Add(new ContaCorrente(titular, numero, saldo));
+            LIstaDasCorrentes.Add(new ContaCorrente(corrente.Titular, corrente.Numero, corrente.Saldo));
             file.Close();
-            RegistrarClienteCorrente();
-            Console.WriteLine($"\n TITULAR:{titular} NUMERO: {numero} SALDO: {saldo.ToString("F2")}\n");
+
+            SalvarListaContaCorrenteNoTxt();
+            Console.WriteLine($"\n TITULAR:{corrente.Titular} NUMERO: {corrente.Numero} SALDO: {corrente.Saldo.ToString("F2")}\n");
         }
-        public void RegistrarClienteCorrente()
+        public void SalvarListaContaCorrenteNoTxt()
         {
             File.Delete(CaminhoCorrente);
+
             using var file = File.AppendText(CaminhoCorrente);
 
             foreach (ContaCorrente conta in LIstaDasCorrentes)
             {
-                string titular = conta.getTitular();
-                int numero = conta.getNumero();
-                double saldo = conta.getSaldo();
+                string titular = conta.Titular;
+                int numero = conta.Numero;
+                double saldo = conta.Saldo;
                 file.WriteLine($"{titular} | {numero} | {saldo.ToString("F2")}");
             }
             file.Close();
