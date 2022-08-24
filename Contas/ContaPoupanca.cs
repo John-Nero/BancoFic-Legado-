@@ -2,20 +2,18 @@
 
 namespace Banco
 {
-    sealed class ContaPoupanca : Conta
+    public sealed class ContaPoupanca : Conta
     {
-        private double taxaDeRentabilidade = 0.05;
+        private double TaxaDeRentabilidade = 0.05;
 
         public ContaPoupanca() { }
 
         public ContaPoupanca(string titular, int numero) : base(titular, numero) { }
         public ContaPoupanca(string titular, int numero, double saldo) : base(titular, numero) { Saldo = saldo; }
 
-
-        public double Rentabiliade()
+        public double Render()
         {
-            return Saldo * taxaDeRentabilidade;
+            return Saldo * TaxaDeRentabilidade;
         }
-
     }
 }

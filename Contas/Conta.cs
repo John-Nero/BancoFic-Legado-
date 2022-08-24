@@ -2,7 +2,7 @@
 
 namespace Banco
 {
-    class Conta
+    public class Conta
     {
         private int Numero;
         private string Titular;
@@ -14,8 +14,6 @@ namespace Banco
             Numero = numero;
             Titular = titular;
         }
-
-
 
         public int getNumero()
         {
@@ -39,11 +37,11 @@ namespace Banco
         {
             return Saldo;
         }
-        public void Deposito(double valor)
+        public void Depositar(double valor)
         {
             Saldo += valor;
         }
-        public virtual void Saque(double valor)
+        public virtual void Sacar(double valor)
         {
             if (Saldo >= valor && valor > 0)
             {
