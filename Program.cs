@@ -4,6 +4,8 @@
 //https://app.diagrams.net/
 
 
+//Talvez pensar na gui agora e não usar só o cmd (acho que o visual tem como construir bem fácil a estrutura e dps só fazer a conexão com os elementos
+
 namespace Banco
 {
     class Program

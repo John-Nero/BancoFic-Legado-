@@ -8,9 +8,9 @@ namespace Banco
         private double LimiteEmprestimo = 500;
 
         public ContaCorrente() { }
-       
         public ContaCorrente(string titular, int numero, double saldo) : base(titular, numero) {  Saldo = saldo; }
 
+        //deixar a informação de emprestimo salvo no arquivo e verificar se a pessoa te limite
         public void SolicitarEmprestimo(double valor)
         {
             if (valor <= LimiteEmprestimo)

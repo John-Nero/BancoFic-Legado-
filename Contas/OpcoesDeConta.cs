@@ -20,7 +20,7 @@ namespace Banco
 
                 if (numero >= 1000 || numero <= 10000)
                 {
-                    foreach (ContaPoupanca conta in Salvar.LIstaDasPoupancas)
+                    foreach (ContaPoupanca conta in Salvar.ListaDasPoupancas)
                     {
                         if (conta.Numero == numero)
                         {
@@ -100,7 +100,7 @@ namespace Banco
                 int Confirmação = 0;
 
                 Salvar.TxtParaPoupancas();
-                foreach (ContaPoupanca conta in Salvar.LIstaDasPoupancas)
+                foreach (ContaPoupanca conta in Salvar.ListaDasPoupancas)
                 {
                     if (conta.Numero == numero && conta.Titular == titular)
                     {
@@ -172,7 +172,7 @@ namespace Banco
 
                 if (numero >= 1000 || numero <= 10000)
                 {
-                    foreach (ContaCorrente conta in Salvar.LIstaDasCorrentes)
+                    foreach (ContaCorrente conta in Salvar.ListaDasCorrentes)
                     {
                         if (conta.Numero == numero)
                         {
@@ -250,7 +250,7 @@ namespace Banco
             {
                 int Confirmação = 0;
                 Salvar.TxtParaCorrentes();
-                foreach (ContaCorrente conta in Salvar.LIstaDasCorrentes)
+                foreach (ContaCorrente conta in Salvar.ListaDasCorrentes)
                 {
                     if (conta.Numero == numero && conta.Titular == titular)
                     {

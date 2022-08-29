@@ -1,23 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\temp\\Projeto\\BancoFic\\Banco.csproj": {}
+    "C:\\WorkingFolder\\Git\\BancoFic\\Banco.csproj": {}
   },
   "projects": {
-    "C:\\temp\\Projeto\\BancoFic\\Banco.csproj": {
+    "C:\\WorkingFolder\\Git\\BancoFic\\Banco.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\temp\\Projeto\\BancoFic\\Banco.csproj",
+        "projectUniqueName": "C:\\WorkingFolder\\Git\\BancoFic\\Banco.csproj",
         "projectName": "Banco",
-        "projectPath": "C:\\temp\\Projeto\\BancoFic\\Banco.csproj",
-        "packagesPath": "C:\\Users\\john.barros\\.nuget\\packages\\",
-        "outputPath": "C:\\temp\\Projeto\\BancoFic\\obj\\",
+        "projectPath": "C:\\WorkingFolder\\Git\\BancoFic\\Banco.csproj",
+        "packagesPath": "C:\\Users\\michele.cotrim\\.nuget\\packages\\",
+        "outputPath": "C:\\WorkingFolder\\Git\\BancoFic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\john.barros\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\michele.cotrim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,7 +27,9 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://cs01tfsp01:81/NugetServer/nuget/": {}
+          "http://cs01tfsp01:81/NugetServer/nuget/": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/vstscs/_packaging/ClearSale%40Local/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -57,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
