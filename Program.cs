@@ -13,11 +13,8 @@ namespace Banco
         {
 
             OpcoesDeConta opcoes = new OpcoesDeConta();
-            SalvarELer salvar = new SalvarELer();
-            ContaPoupanca conta = new ContaPoupanca();
-            salvar.AtualizarContaPoupanca(conta);
             Console.WriteLine("Selecione a ação que deseja executar:");
-            Console.WriteLine(" 1 - Consultar conta poupança(Já existente) \n 2 - Criar conta poupanca \n 3 - Consultar conta corrente (já existente) \n 4 - Criar conta corrente \n 5 - Encerrar");
+            Console.WriteLine(" 1 - Consultar Conta poupança(Já existente) \n 2 - Criar Conta Poupanca \n 3 - Consultar Conta corrente (já existente) \n 4 - Criar Conta corrente \n 5 - Encerrar");
             int sel = int.Parse(Console.ReadLine());
             bool loop = true;
             while (loop)
@@ -26,7 +23,7 @@ namespace Banco
                 {
                     case 1:
                     Console.Clear();
-                    Console.WriteLine("CONSULTAR CONTA POUPANÇA SELECIONADA");
+                    Console.WriteLine("CONSULTAR Conta POUPANÇA SELECIONADA");
                     opcoes.ConsultarContaPoupanca();
                     acaoPoupanca(opcoes);
 
@@ -34,21 +31,21 @@ namespace Banco
 
                     case 2:
                     Console.Clear();
-                    Console.WriteLine("CRIAR CONTA POUPANCA SELECIONADA");
+                    Console.WriteLine("CRIAR Conta Poupanca SELECIONADA");
                     opcoes.CriarContaPoupanca();
                     acaoPoupanca(opcoes);
                     break;
 
                     case 3:
                     Console.Clear();
-                    Console.WriteLine("CONSULTAR CONTA CORRENTE SELECIONADA");
+                    Console.WriteLine("CONSULTAR Conta CORRENTE SELECIONADA");
                     opcoes.ConsultarContaCorrente();
                     acaoCorrente(opcoes);
                     break;
 
                     case 4:
                     Console.Clear();
-                    Console.WriteLine("CRIAR CONTA POUPANCA SELECIONADA");
+                    Console.WriteLine("CRIAR Conta Poupanca SELECIONADA");
                     opcoes.CriarContaCorrente();
                     acaoCorrente(opcoes);
                     break;

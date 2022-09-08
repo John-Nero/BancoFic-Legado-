@@ -7,16 +7,16 @@ namespace Banco
     public class SalvarELer
     {
         //Caminhos Para Local De Busca
-        internal const string CaminhoPoupanca = @"C:\temp\projeto\DadosClientes\DadosDosClientesPoupanca.txt";
-        internal const string CaminhoCorrente = @"C:\temp\projeto\DadosClientes\DadosDosClientesCorrente.txt";
+        internal const string CaminhoPoupanca = @"C:\temp\bancofic\DadosClientes\DadosDosClientesPoupanca.txt";
+        internal const string CaminhoCorrente = @"C:\temp\bancofic\DadosClientes\DadosDosClientesCorrente.txt";
 
-        //Listas dos tipos de conta
+        //Listas dos tipos de Conta
         public List<ContaPoupanca> LIstaDasPoupancas = new List<ContaPoupanca>();
         public List<ContaCorrente> LIstaDasCorrentes = new List<ContaCorrente>();
 
-        //Metodos de Save e atualização da conta poupanca
-        internal List<ContaPoupanca> TxtParaPoupancas()
-        {
+        //Metodos de Save e atualização da Conta Poupanca
+        public List<ContaPoupanca> TxtParaPoupancas()
+        {   //Nome | Numero | Saldo
             //john | 4578 | 0
             try
             {
@@ -28,9 +28,7 @@ namespace Banco
                     string titular = ModeloInteiro[0];
                     int numero = int.Parse(ModeloInteiro[1]);
                     double saldo = double.Parse(ModeloInteiro[2]);
-                    ContaPoupanca contacompleta = new ContaPoupanca(titular, numero, saldo);
-
-                    LIstaDasPoupancas.Add(contacompleta);
+                    LIstaDasPoupancas.Add(new ContaPoupanca(titular, numero, saldo));
 
                 }
                 return LIstaDasPoupancas;
@@ -41,29 +39,29 @@ namespace Banco
                 throw;
             }
         }
-        public void AtualizarContaPoupanca(ContaPoupanca poupanca)
+        public void AtualizarContaPoupanca(ContaPoupanca Poupanca)
         {
 
             if (LIstaDasPoupancas.Count == 0)
             {
                 TxtParaPoupancas();
             }
-            foreach (ContaPoupanca conta in LIstaDasPoupancas)
+            foreach (ContaPoupanca Conta in LIstaDasPoupancas)
             {
-                if (poupanca.Titular == conta.Titular && poupanca.Numero == conta.Numero)
+                if (Poupanca.Titular == Conta.Titular && Poupanca.Numero == Conta.Numero)
                 {
 
-                    LIstaDasPoupancas.Remove(conta);
+                    LIstaDasPoupancas.Remove(Conta);
                     break;
                 }
             }
 
             using var file = File.AppendText(CaminhoPoupanca);
-            LIstaDasPoupancas.Add(new ContaPoupanca(poupanca.Titular, poupanca.Numero, poupanca.Saldo));
+            LIstaDasPoupancas.Add(new ContaPoupanca(Poupanca.Titular, Poupanca.Numero, Poupanca.Saldo));
             file.Close();
 
             SalvarListaContaPoupancaNoTxt();
-            Console.WriteLine($"\n TITULAR:{poupanca.Titular} NUMERO: {poupanca.Numero} SALDO: {poupanca.Saldo.ToString("F2")}\n");
+            Console.WriteLine($"\n TITULAR:{Poupanca.Titular} NUMERO: {Poupanca.Numero} SALDO: {Poupanca.Saldo.ToString("F2")}\n");
         }
         public void SalvarListaContaPoupancaNoTxt()
         {
@@ -71,20 +69,20 @@ namespace Banco
 
             using var file = File.AppendText(CaminhoPoupanca);
 
-            foreach (ContaPoupanca conta in LIstaDasPoupancas)
+            foreach (ContaPoupanca Conta in LIstaDasPoupancas)
             {
-                string titular = conta.Titular;
-                int numero = conta.Numero;
-                double saldo = conta.Saldo;
+                string titular = Conta.Titular;
+                int numero = Conta.Numero;
+                double saldo = Conta.Saldo;
                 file.WriteLine($"{titular} | {numero} | {saldo.ToString("F2")}");
             }
             file.Close();
         }
 
-        //Metodos de save e atualização da conta corrente
+        //Metodos de save e atualização da Conta corrente
         internal List<ContaCorrente> TxtParaCorrentes()
-        {
-            //john | 4578 | 0
+        {   //Nome | Numero | Saldo | Limite de emprestimo
+            //john | 4578 | 100 | 500
             try
             {
                 string[] LeTexto = File.ReadAllLines(CaminhoCorrente);
@@ -95,9 +93,8 @@ namespace Banco
                     string titular = ModeloInteiro[0];
                     int numero = int.Parse(ModeloInteiro[1]);
                     double saldo = double.Parse(ModeloInteiro[2]);
-                    ContaCorrente contacompleta = new ContaCorrente(titular, numero, saldo);
-
-                    LIstaDasCorrentes.Add(contacompleta);
+                    double limite = double.Parse(ModeloInteiro[3]);
+                    LIstaDasCorrentes.Add(new ContaCorrente(titular, numero, saldo, limite));
 
                 }
                 return LIstaDasCorrentes;
@@ -114,18 +111,18 @@ namespace Banco
             {
                 TxtParaPoupancas();
             }
-            foreach (ContaCorrente conta in LIstaDasCorrentes)
+            foreach (ContaCorrente Conta in LIstaDasCorrentes)
             {
-                if (corrente.Titular == conta.Titular && corrente.Numero == conta.Numero)
+                if (corrente.Titular == Conta.Titular && corrente.Numero == Conta.Numero)
                 {
 
-                    LIstaDasCorrentes.Remove(conta);
+                    LIstaDasCorrentes.Remove(Conta);
                     break;
                 }
             }
 
             using var file = File.AppendText(CaminhoCorrente);
-            LIstaDasCorrentes.Add(new ContaCorrente(corrente.Titular, corrente.Numero, corrente.Saldo));
+            LIstaDasCorrentes.Add(new ContaCorrente(corrente.Titular, corrente.Numero, corrente.Saldo, corrente.LimiteEmprestimo));
             file.Close();
 
             SalvarListaContaCorrenteNoTxt();
@@ -137,15 +134,14 @@ namespace Banco
 
             using var file = File.AppendText(CaminhoCorrente);
 
-            foreach (ContaCorrente conta in LIstaDasCorrentes)
+            foreach (ContaCorrente Conta in LIstaDasCorrentes)
             {
-                string titular = conta.Titular;
-                int numero = conta.Numero;
-                double saldo = conta.Saldo;
-                file.WriteLine($"{titular} | {numero} | {saldo.ToString("F2")}");
+                string titular = Conta.Titular;
+                int numero = Conta.Numero;
+                double saldo = Conta.Saldo;
+                file.WriteLine($"{titular} | {numero} | {saldo.ToString("F2")} | {Conta.LimiteEmprestimo}");
             }
             file.Close();
         }
-
     }
 }

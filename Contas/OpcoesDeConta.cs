@@ -8,39 +8,27 @@ namespace Banco
         SalvarELer Salvar = new SalvarELer();
         ContaPoupanca Poupanca = new ContaPoupanca();
         ContaCorrente Corrente = new ContaCorrente();
-        // coleta de dados e Opções da conta poupança
+        // coleta de dados e Opções da Conta poupança
 
         public ContaPoupanca CriarContaPoupanca()
         {
             try
             {
-                Console.Write(" Entre com o numero da conta: ");
-                int numero = int.Parse(Console.ReadLine());
-
-
-                if (numero >= 1000 || numero <= 10000)
+                Random random = new Random();
+                int numero = random.Next(1000, 10000);
+                Salvar.TxtParaPoupancas();
+                foreach (ContaPoupanca Conta in Salvar.LIstaDasPoupancas)
                 {
-                    foreach (ContaPoupanca conta in Salvar.LIstaDasPoupancas)
+                    if (Conta.Numero == numero && numero.ToString().Length != 4)
                     {
-                        if (conta.Numero == numero)
-                        {
-                            Console.WriteLine("NUMERO DE CONTA JÁ CONSTA NO SISTEMA");
-                            Console.ReadLine();
-                            Console.Clear();
-                            CriarContaPoupanca();
-                        }
+                        Console.WriteLine("aaaaaaaaaaaaaaaaa");
                     }
+                    else { break; }
                 }
-                else
-                {
-                    Console.WriteLine(" O NUMERO DE CONTA DEVE CONTER QUATRO DIGITOS");
-                    Console.ReadLine();
-                    Console.Clear();
-                    CriarContaPoupanca();
-                }
+
 
             VoltaNome:
-                Console.Write(" Entre com o titular da conta: ");
+                Console.Write(" Entre com o titular da Conta: ");
                 string titular = Console.ReadLine();
 
 
@@ -50,7 +38,7 @@ namespace Banco
                     Console.WriteLine(" NOME MUITO CURTO OU MUITO LONGO, DIGITE ENTRE QUATRO E DEZ CARACTERES");
                     Console.ReadLine();
                     Console.Clear();
-                    Console.WriteLine($" Numero da conta:{numero}");
+                    Console.WriteLine($" Numero da Conta:{numero}");
                     goto VoltaNome;
                 }
                 Poupanca.setNumero(numero);
@@ -87,12 +75,12 @@ namespace Banco
         }
         public void ConsultarContaPoupanca()
         {
-            Console.WriteLine("Digite os dados a seguir para consultar se sua conta já consta no sistema\n");
+            Console.WriteLine("Digite os dados a seguir para consultar se sua Conta já consta no sistema\n");
 
             Console.Write("Nome do Titular:");
             string titular = Console.ReadLine();
 
-            Console.Write("Numero da conta:");
+            Console.Write("Numero da Conta:");
             int numero = int.Parse(Console.ReadLine());
 
             try
@@ -100,23 +88,23 @@ namespace Banco
                 int Confirmação = 0;
 
                 Salvar.TxtParaPoupancas();
-                foreach (ContaPoupanca conta in Salvar.LIstaDasPoupancas)
+                foreach (ContaPoupanca Conta in Salvar.LIstaDasPoupancas)
                 {
-                    if (conta.Numero == numero && conta.Titular == titular)
+                    if (Conta.Numero == numero && Conta.Titular == titular)
                     {
-                        
+
                         Console.Clear();
-                        Console.WriteLine(" CONTA SELECIONADA:");
-                        Console.WriteLine($"\n TITULAR:{conta.Titular} NUMERO: {conta.Numero} SALDO: {conta.Saldo.ToString("F2")}\n");
+                        Console.WriteLine(" Conta SELECIONADA:");
+                        Console.WriteLine($"\n TITULAR:{Conta.Titular} NUMERO: {Conta.Numero} SALDO: {Conta.Saldo.ToString("F2")}\n");
                         Confirmação++;
                         Poupanca.setNumero(numero);
                         Poupanca.setTitular(titular);
-                        Poupanca.Depositar(conta.Saldo);
+                        Poupanca.Depositar(Conta.Saldo);
                     }
                 }
                 if (Confirmação == 0)
                 {
-                    Console.WriteLine("DADOS INCORRETOS OU CONTA NÃO CONSTA NO SISTEMA");
+                    Console.WriteLine("DADOS INCORRETOS OU Conta NÃO CONSTA NO SISTEMA");
                     Console.ReadLine();
                     Console.Clear();
                     ConsultarContaPoupanca();
@@ -147,7 +135,7 @@ namespace Banco
         public void MostrarDadosPoupanca()
         {
             Console.WriteLine(" Saldo atualizado: ");
-            Console.Write("\n Dados da conta:");
+            Console.Write("\n Dados da Conta:");
             Console.WriteLine($"\n Nº da Conta: {Poupanca.Numero} , Titular: {Poupanca.Titular}, Saldo: $ {Poupanca.Saldo.ToString("F2")}\n");
             Console.WriteLine(" Tecle Enter para continuar.");
             Console.ReadLine();
@@ -161,38 +149,26 @@ namespace Banco
             Console.ReadLine();
         }
 
-        // Coleta de dados e Opções da conta corrente
+        // Coleta de dados e Opções da Conta corrente
 
         public ContaCorrente CriarContaCorrente()
         {
             try
             {
-                Console.Write(" Entre com o numero da conta: ");
-                int numero = int.Parse(Console.ReadLine());
-
-                if (numero >= 1000 || numero <= 10000)
+                Random random = new Random();
+                int numero = random.Next(1000, 10000);
+                Salvar.TxtParaCorrentes();
+                foreach (ContaCorrente Conta in Salvar.LIstaDasCorrentes)
                 {
-                    foreach (ContaCorrente conta in Salvar.LIstaDasCorrentes)
+                    if (Conta.Numero == numero && numero.ToString().Length != 4)
                     {
-                        if (conta.Numero == numero)
-                        {
-                            Console.WriteLine("NUMERO DE CONTA JÁ CONSTA NO SISTEMA");
-                            Console.ReadLine();
-                            Console.Clear();
-                            CriarContaCorrente();
-                        }
+                        Console.WriteLine("aaaaaaaaaaaaaaaaa");
                     }
-                }
-                else
-                {
-                    Console.WriteLine(" O NUMERO DE CONTA DEVE CONTER QUATRO DIGITOS");
-                    Console.ReadLine();
-                    Console.Clear();
-                    CriarContaCorrente();
+                    else { break; }
                 }
 
             VoltaNome:
-                Console.Write(" Entre com o titular da conta: ");
+                Console.Write(" Entre com o titular da Conta: ");
                 string titular = Console.ReadLine();
 
                 int confirmacaoTitular = titular.Length;
@@ -201,7 +177,7 @@ namespace Banco
                     Console.WriteLine(" NOME MUITO CURTO OU MUITO LONGO, DIGITE ENTRE QUATRO E DEZ CARACTERES");
                     Console.ReadLine();
                     Console.Clear();
-                    Console.WriteLine($" Numero da conta:{numero}");
+                    Console.WriteLine($" Numero da Conta:{numero}");
                     goto VoltaNome;
                 }
                 Corrente.setNumero(numero);
@@ -238,34 +214,36 @@ namespace Banco
         }
         public void ConsultarContaCorrente()
         {
-            Console.WriteLine("Digite os dados a seguir para consultar se sua conta já consta no sistema\n");
+            Console.WriteLine("Digite os dados a seguir para consultar se sua Conta já consta no sistema\n");
 
             Console.Write("Nome do Titular:");
             string titular = Console.ReadLine();
 
-            Console.Write("Numero da conta:");
+            Console.Write("Numero da Conta:");
             int numero = int.Parse(Console.ReadLine());
 
             try
             {
                 int Confirmação = 0;
                 Salvar.TxtParaCorrentes();
-                foreach (ContaCorrente conta in Salvar.LIstaDasCorrentes)
+                foreach (ContaCorrente Conta in Salvar.LIstaDasCorrentes)
                 {
-                    if (conta.Numero == numero && conta.Titular == titular)
+                    if (Conta.Numero == numero && Conta.Titular == titular)
                     {
                         Console.Clear();
-                        Console.WriteLine(" CONTA SELECIONADA:");
-                        Console.WriteLine($"\n TITULAR:{conta.Titular} NUMERO: {conta.Numero} SALDO: {conta.Saldo.ToString("F2")}\n");
+                        Console.WriteLine(" Conta SELECIONADA:");
+                        Console.WriteLine($"\n TITULAR:{Conta.Titular} NUMERO: {Conta.Numero} SALDO: {Conta.Saldo.ToString("F2")}\n");
                         Confirmação++;
                         Corrente.setNumero(numero);
                         Corrente.setTitular(titular);
-                        Corrente.Depositar(conta.Saldo);
+                        Corrente.Depositar(Conta.Saldo);
+                        Corrente.SetLimitEmprestimo(Conta.LimiteEmprestimo);
+
                     }
                 }
                 if (Confirmação == 0)
                 {
-                    Console.WriteLine("DADOS INCORRETOS OU CONTA NÃO CONSTA NO SISTEMA");
+                    Console.WriteLine("DADOS INCORRETOS OU Conta NÃO CONSTA NO SISTEMA");
                     Console.ReadLine();
                     Console.Clear();
                     ConsultarContaCorrente();
@@ -294,7 +272,7 @@ namespace Banco
         }
         public void MostrarDadosCorrente()
         {
-            Console.Write("\n Dados da conta:");
+            Console.Write("\n Dados da Conta:");
             Console.WriteLine($"\n Nº da Conta: {Corrente.Numero}, Titular: {Corrente.Titular}, Saldo: $ {Corrente.Saldo.ToString("F2")}\n");
             Console.WriteLine(" Tecle Enter para continuar.");
             Console.ReadLine();
