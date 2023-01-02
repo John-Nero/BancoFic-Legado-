@@ -7,8 +7,8 @@ namespace Banco
     public class SalvarELer
     {
         //Caminhos Para Local De Busca
-        internal const string CaminhoPoupanca = @"C:\temp\bancofic\DadosClientes\DadosDosClientesPoupanca.txt";
-        internal const string CaminhoCorrente = @"C:\temp\bancofic\DadosClientes\DadosDosClientesCorrente.txt";
+        internal const string CaminhoPoupanca = "../../../DadosClientes/DadosDosClientesPoupanca.txt";
+        internal const string CaminhoCorrente = "../../../DadosClientes/DadosDosClientesCorrente.txt";
 
         //Listas dos tipos de Conta
         public List<ContaPoupanca> LIstaDasPoupancas = new List<ContaPoupanca>();

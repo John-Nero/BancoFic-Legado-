@@ -86,3 +86,19 @@ C:\temp\Projeto\BancoFic\obj\Debug\net5.0\Banco.dll
 C:\temp\Projeto\BancoFic\obj\Debug\net5.0\ref\Banco.dll
 C:\temp\Projeto\BancoFic\obj\Debug\net5.0\Banco.pdb
 C:\temp\Projeto\BancoFic\obj\Debug\net5.0\Banco.genruntimeconfig.cache
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\bin\Debug\net5.0\Banco.exe
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\bin\Debug\net5.0\Banco.deps.json
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\bin\Debug\net5.0\Banco.runtimeconfig.json
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\bin\Debug\net5.0\Banco.runtimeconfig.dev.json
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\bin\Debug\net5.0\Banco.dll
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\bin\Debug\net5.0\ref\Banco.dll
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\bin\Debug\net5.0\Banco.pdb
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\obj\Debug\net5.0\Banco.csproj.AssemblyReference.cache
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\obj\Debug\net5.0\Banco.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\obj\Debug\net5.0\Banco.AssemblyInfoInputs.cache
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\obj\Debug\net5.0\Banco.AssemblyInfo.cs
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\obj\Debug\net5.0\Banco.csproj.CoreCompileInputs.cache
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\obj\Debug\net5.0\Banco.dll
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\obj\Debug\net5.0\ref\Banco.dll
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\obj\Debug\net5.0\Banco.pdb
+C:\Users\john.barros\OneDrive - Clearsale S.A\Área de Trabalho\bancoficv1\BancoFic-Legado-\obj\Debug\net5.0\Banco.genruntimeconfig.cache
