@@ -1,6 +1,6 @@
 ﻿using System;
 
-//ATENÇÃO PARA VISUALIZAÇÃO DO DIAGRAMA UTILIZAR O SITE:
+//ATENÇÃO PARA VISUALIZAÇÃO DO DIAGRAMA UTILIZAR O SITE :
 //https://app.diagrams.net/
 
 

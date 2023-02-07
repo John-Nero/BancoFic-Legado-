@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\john.barros\\OneDrive - Clearsale S.A\\Área de Trabalho\\bancoficv1\\BancoFic-Legado-\\Banco.csproj": {}
+    "C:\\Users\\john.barros\\OneDrive - Clearsale S.A\\Área de Trabalho\\BancoFic-Legado-\\Banco.csproj": {}
   },
   "projects": {
-    "C:\\Users\\john.barros\\OneDrive - Clearsale S.A\\Área de Trabalho\\bancoficv1\\BancoFic-Legado-\\Banco.csproj": {
+    "C:\\Users\\john.barros\\OneDrive - Clearsale S.A\\Área de Trabalho\\BancoFic-Legado-\\Banco.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\john.barros\\OneDrive - Clearsale S.A\\Área de Trabalho\\bancoficv1\\BancoFic-Legado-\\Banco.csproj",
+        "projectUniqueName": "C:\\Users\\john.barros\\OneDrive - Clearsale S.A\\Área de Trabalho\\BancoFic-Legado-\\Banco.csproj",
         "projectName": "Banco",
-        "projectPath": "C:\\Users\\john.barros\\OneDrive - Clearsale S.A\\Área de Trabalho\\bancoficv1\\BancoFic-Legado-\\Banco.csproj",
+        "projectPath": "C:\\Users\\john.barros\\OneDrive - Clearsale S.A\\Área de Trabalho\\BancoFic-Legado-\\Banco.csproj",
         "packagesPath": "C:\\Users\\john.barros\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\john.barros\\OneDrive - Clearsale S.A\\Área de Trabalho\\bancoficv1\\BancoFic-Legado-\\obj\\",
+        "outputPath": "C:\\Users\\john.barros\\OneDrive - Clearsale S.A\\Área de Trabalho\\BancoFic-Legado-\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
